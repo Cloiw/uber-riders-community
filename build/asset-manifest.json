@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/uber-riders-community/static/css/main.6a4f7dcf.chunk.css",
+    "main.js": "/uber-riders-community/static/js/main.8c46962e.chunk.js",
+    "main.js.map": "/uber-riders-community/static/js/main.8c46962e.chunk.js.map",
+    "runtime-main.js": "/uber-riders-community/static/js/runtime-main.deb9892a.js",
+    "runtime-main.js.map": "/uber-riders-community/static/js/runtime-main.deb9892a.js.map",
+    "static/js/2.e195c64f.chunk.js": "/uber-riders-community/static/js/2.e195c64f.chunk.js",
+    "static/js/2.e195c64f.chunk.js.map": "/uber-riders-community/static/js/2.e195c64f.chunk.js.map",
+    "index.html": "/uber-riders-community/index.html",
+    "precache-manifest.d126768a83a73ad848c4ae4744325be0.js": "/uber-riders-community/precache-manifest.d126768a83a73ad848c4ae4744325be0.js",
+    "service-worker.js": "/uber-riders-community/service-worker.js",
+    "static/css/main.6a4f7dcf.chunk.css.map": "/uber-riders-community/static/css/main.6a4f7dcf.chunk.css.map",
+    "static/media/logo.svg": "/uber-riders-community/static/media/logo.25bf045c.svg"
+  }
+}
