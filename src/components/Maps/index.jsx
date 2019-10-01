@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import userIcon from '../../img/user_icon.png';
+import { db } from '../../data/firebase';
 
 import './Maps.css'
 
@@ -69,6 +70,31 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
+
+    db.collection("pins").onSnapshot((querySnapshot)=>{
+      
+      this.setState({
+        pins: querySnapshot.docs.map(doc => {     
+          return {data: doc.data() }
+        })
+      })
+      
+      this.state.pins.map(e=>{ console.log(e.data.location.lat)
+        const icon = {
+          url: require(`../../img/${e.data.identify}.png`),
+          scaledSize: new google.maps.Size(30, 40), 
+        };
+        let marker = new google.maps.Marker({
+          position: { lat: e.data.location.lat, lng:  e.data.location.long },
+          map: this.map,
+          title: 'Laboratoria',
+          icon: icon,
+        });
+        marker.setMap(this.map)
+
+      })      
+    })
+
   }
 
   render() {
