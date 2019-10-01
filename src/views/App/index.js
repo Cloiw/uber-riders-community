@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => (
 
-  <Router>
+  <Router  basename="/uber-riders-community/">
       <Switch>
         <Route
           exact
