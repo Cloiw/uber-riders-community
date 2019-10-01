@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import userIcon from '../../img/user_icon.png';
 import { db } from '../../data/firebase';
+import { Link } from 'react-router-dom';
 
 import './Maps.css'
 
@@ -90,7 +91,11 @@ class Maps extends Component {
           title: 'Laboratoria',
           icon: icon,
         });
-        marker.setMap(this.map)
+          marker.addListener('click', () => { 
+           window.location = `/Report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+
+          });
+          marker.setMap(this.map)
 
       })      
     })
