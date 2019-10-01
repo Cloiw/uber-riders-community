@@ -38,6 +38,12 @@ class Maps extends Component {
     navigator.geolocation.getCurrentPosition((position) => {
       let mapOptions = {
         zoom: 20,
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
         center: { lat: position.coords.latitude, lng:  position.coords.longitude}
       };
       this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
