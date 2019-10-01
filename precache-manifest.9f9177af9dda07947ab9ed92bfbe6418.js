@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8e9c2966736e1ac900d4123087d597cc",
+    "revision": "a4682cee786431281872fc88a2149371",
     "url": "/uber-riders-community/index.html"
   },
   {
