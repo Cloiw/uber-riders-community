@@ -45,11 +45,15 @@ class Maps extends Component {
       };
       this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
       this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
+      const icon = {
+      url: userIcon,
+      scaledSize: new google.maps.Size(80, 80), 
+    };
       this.marker = new google.maps.Marker({
         position: { lat: position.coords.latitude, lng:  position.coords.longitude },
         map: this.map,
         title: 'Laboratoria',
-        icon: userIcon,
+        icon: icon,
       });
       this.marker.setMap(this.map)
       this.loaded_map = true;
