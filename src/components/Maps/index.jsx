@@ -83,7 +83,7 @@ class Maps extends Component {
       this.state.pins.map(e=>{ console.log(e.data.location.lat)
         const icon = {
           url: require(`../../img/${e.data.identify}.png`),
-          scaledSize: new google.maps.Size(30, 40), 
+          scaledSize: new google.maps.Size(30, 30), 
         };
         let marker = new google.maps.Marker({
           position: { lat: e.data.location.lat, lng:  e.data.location.long },
