@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4c49da1d02a15b7778933f2fac1088cd",
+    "revision": "174f249165e191e7d216ab749285c891",
     "url": "/uber-riders-community/index.html"
   },
   {
-    "revision": "9c2a5b3591346810cd96",
+    "revision": "ef20fc4c72bc416914d0",
     "url": "/uber-riders-community/static/css/main.17f54515.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uber-riders-community/static/js/2.e195c64f.chunk.js"
   },
   {
-    "revision": "9c2a5b3591346810cd96",
-    "url": "/uber-riders-community/static/js/main.1077a71a.chunk.js"
+    "revision": "ef20fc4c72bc416914d0",
+    "url": "/uber-riders-community/static/js/main.5ad5935b.chunk.js"
   },
   {
     "revision": "3d1573631f239c5f99a6",
