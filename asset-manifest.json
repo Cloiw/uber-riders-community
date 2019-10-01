@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/uber-riders-community/static/css/main.0af55fb7.chunk.css",
-    "main.js": "/uber-riders-community/static/js/main.dce07639.chunk.js",
-    "main.js.map": "/uber-riders-community/static/js/main.dce07639.chunk.js.map",
+    "main.css": "/uber-riders-community/static/css/main.4c50dcc9.chunk.css",
+    "main.js": "/uber-riders-community/static/js/main.729e803d.chunk.js",
+    "main.js.map": "/uber-riders-community/static/js/main.729e803d.chunk.js.map",
     "runtime-main.js": "/uber-riders-community/static/js/runtime-main.deb9892a.js",
     "runtime-main.js.map": "/uber-riders-community/static/js/runtime-main.deb9892a.js.map",
-    "static/js/2.b69a61f4.chunk.js": "/uber-riders-community/static/js/2.b69a61f4.chunk.js",
-    "static/js/2.b69a61f4.chunk.js.map": "/uber-riders-community/static/js/2.b69a61f4.chunk.js.map",
+    "static/js/2.d465da00.chunk.js": "/uber-riders-community/static/js/2.d465da00.chunk.js",
+    "static/js/2.d465da00.chunk.js.map": "/uber-riders-community/static/js/2.d465da00.chunk.js.map",
     "index.html": "/uber-riders-community/index.html",
-    "precache-manifest.e887a34e5ecfd3cfcde1a3a40723ba2f.js": "/uber-riders-community/precache-manifest.e887a34e5ecfd3cfcde1a3a40723ba2f.js",
+    "precache-manifest.a3db2b398c8d96172e7dbf5a1879d5ac.js": "/uber-riders-community/precache-manifest.a3db2b398c8d96172e7dbf5a1879d5ac.js",
     "service-worker.js": "/uber-riders-community/service-worker.js",
-    "static/css/main.0af55fb7.chunk.css.map": "/uber-riders-community/static/css/main.0af55fb7.chunk.css.map"
+    "static/css/main.4c50dcc9.chunk.css.map": "/uber-riders-community/static/css/main.4c50dcc9.chunk.css.map"
   }
 }
