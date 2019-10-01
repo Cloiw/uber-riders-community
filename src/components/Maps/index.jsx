@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import userIcon from '../../img/user_icon.png';
+
+import './Maps.css'
 
 const google = window.google;
 
@@ -45,7 +48,8 @@ class Maps extends Component {
       this.marker = new google.maps.Marker({
         position: { lat: position.coords.latitude, lng:  position.coords.longitude },
         map: this.map,
-        title: 'EStoy aquiiiiiii!'
+        title: 'Laboratoria',
+        icon: userIcon,
       });
       this.marker.setMap(this.map)
       this.loaded_map = true;
