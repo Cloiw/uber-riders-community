@@ -12,7 +12,7 @@ const App = () => (
         <Route
           exact
           path="/"
-          render={(props) => <Home {...props} />}
+          component={Home}
         />
         <Route
           exact
