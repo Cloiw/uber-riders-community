@@ -17,10 +17,8 @@ class Report extends React.Component {
   componentDidMount() {
     const id = this.props.match.params;
 
-
-
     db.collection("pins").doc(id.reportsId).onSnapshot((querySnapshot) => {
-      // console.log(querySnapshot);
+      console.log(querySnapshot);
 
       this.setState({
         reportName: querySnapshot.data().title,
@@ -52,7 +50,6 @@ class Report extends React.Component {
   }
 
   render() {
-
     return (
       <>
         <Container-Fluid>

@@ -61,7 +61,7 @@ class CreatePin extends Component {
     }
     let data =
       {
-      author: "Laboratoria",
+      author: userId,
       id: nameDoc,
       description: this.state.description,
       identify: this.state.identify,

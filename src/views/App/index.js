@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
 
-  <Router  basename="/uber-riders-community/">
+  <Router>
       <Switch>
         <Route
           exact
