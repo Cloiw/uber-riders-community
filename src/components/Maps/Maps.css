@@ -20,3 +20,18 @@
   justify-content: center;
   align-content: center;
 }
+
+#btn-localizacion, #security{
+  width: 60%;
+  height: 65%;
+  border-radius: 50%;
+  margin-top: 12%;
+ 
+}
+#btn-localizacion{
+  background-color: #fff;
+  margin-right: 20%;
+}
+#security{
+  background-color: #44559D
+}
