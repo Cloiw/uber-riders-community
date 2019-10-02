@@ -30,6 +30,7 @@ class Maps extends Component {
     this.changeIsMakingPin = this.changeIsMakingPin.bind(this);
     this.createListener = this.createListener.bind(this)
     this.reCenter = this.reCenter.bind(this)
+    this.isMakingPin = false;
   }
   
   reCenter(){
@@ -40,13 +41,9 @@ class Maps extends Component {
   }
 
   changeIsMakingPin() {
-    console.log(this.state.isMakingPin)
-    this.setState({
-      isMakingPin: !this.state.isMakingPin
-    })
-    console.log(this.state.isMakingPin,"aqui cambia")
+    console.log(!this.isMakingPin)
+    this.isMakingPin = !this.isMakingPin;
     this.createListener()
-    console.log(this.state.isMakingPin,"termina")
   }
 
   createListener() {
@@ -56,11 +53,11 @@ class Maps extends Component {
       console.log(lat, long)
     })
 
-    if(this.state.isMakingPin === true ){
+    if(this.isMakingPin === true ){
       console.log("sip")
        return google.maps.event.addListener(createPin)
       }
-      console.log("xaus")
+      console.log("quitar evento")
        google.maps.event.clearListeners(this.map, 'click');
   }
   
@@ -163,7 +160,7 @@ class Maps extends Component {
         <Container fluid>
           <div className="pruebaa">
             
-            <button className="btn-create-pin" onClick={()=> this.reCenter() }> center </button>
+            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
           </div>
           <Row  bsPrefix="row prueba">
             <Col xs={4}>

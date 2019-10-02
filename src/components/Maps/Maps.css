@@ -25,6 +25,7 @@
   width: 70px;
   height: 70px;
   background:yellow;
+  border-radius: 50%;
 }
 
 .prueba > .col-4, .icons-top > .col-6 {
