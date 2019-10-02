@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../data/firebase';
@@ -18,10 +17,8 @@ class Report extends React.Component {
   componentDidMount() {
     const id = this.props.match.params;
 
-
-
     db.collection("pins").doc(id.reportsId).onSnapshot((querySnapshot) => {
-      // console.log(querySnapshot);
+      console.log(querySnapshot);
 
       this.setState({
         reportName: querySnapshot.data().title,
@@ -53,7 +50,6 @@ class Report extends React.Component {
   }
 
   render() {
-
     return (
       <>
         <Container-Fluid>
@@ -65,8 +61,7 @@ class Report extends React.Component {
                 <img src={back} className="icon" alt="Volver atrás"></img>
               </Link>
             </Col>
-
-
+        
             <Col xs={8} sm={8} md={8} xl={8}>
               <h3 className="fontWhite">{this.state.reportName}</h3>
             </Col>
@@ -99,7 +94,9 @@ class Report extends React.Component {
             </Row>
             <Row>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">{this.state.reportDate}</p>
+                <p className="textCenter">{new Date(this.state.reportDate).toLocaleDateString()}<br/>
+                {new Date(this.state.reportDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                </p>
               </Col>
               <Col xs={6} md={6} xl={6}>
                 <p className="textCenter">Puma 1180, Recoleta</p>
@@ -121,8 +118,9 @@ class Report extends React.Component {
               </Col>
 
             </Row>
+          <Container>
 
-
+          </Container>
             <Row>
               <Col xs={12} sm={12} md={12} xl={12}>
                 <h4>Comentarios</h4>
