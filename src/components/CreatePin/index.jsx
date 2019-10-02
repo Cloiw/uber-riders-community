@@ -14,7 +14,7 @@ import { db } from '../../data/firebase';
 class CreatePin extends Component {
   constructor(props) {
     super(props);
-    this.state = {description : ""}
+    this.state = {description : "", identify: ""}
     this.selectIdentify = this.selectIdentify.bind(this);
     this.changeDescription = this.changeDescription.bind(this);
     this.savePin = this.savePin.bind(this);
@@ -39,16 +39,40 @@ class CreatePin extends Component {
     })
     let userId = "user_lab"
     let time = Date.now()
+    let nameDoc = userId+"_"+this.state.identify+"_"+time
+    let title = ""
+    if(this.state.identify === "police"){
+      title = "Carabineros"
+    }
+    if(this.state.identify === "need_help"){
+      title = "Necesito ayuda"
+    }
+    if(this.state.identify === "susp_passenger"){
+      title = "Pasajero sospechoso"
+    }
+    if(this.state.identify === "thief"){
+      title = "Robo"
+    }
+    if(this.state.identify === "accident"){
+      title = "Accidente"
+    }
+    if(this.state.identify === "crane"){
+      title = "Ayuda"
+    }
     let data =
       {
       author: "Laboratoria",
+      id: nameDoc,
       description: this.state.description,
       identify: this.state.identify,
       location : { lat:this.props.lat, long:this.props.long},
-      time: time
+      time: time,
+      title: title
       }
 
-    let nameDoc = userId+"_"+this.state.identify+"_"+time
+    if(this.state.identify === ""){
+      return (console.log("identificador no hay"))
+    }
     db.collection('pins').doc(nameDoc).set(data)
     .then(() => {
       this.setState({
