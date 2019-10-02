@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import userIcon from '../../img/user_icon.png';
 import { db } from '../../data/firebase';
-<<<<<<< HEAD
-=======
 import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
@@ -16,7 +14,6 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
->>>>>>> 31f5625b8a188382810ca1f21d7ca5cfe7f1ff9b
 
 import './Maps.css'
 import CreatePin from '../CreatePin';
@@ -88,9 +85,6 @@ class Maps extends Component {
     console.log("all")
     navigator.geolocation.getCurrentPosition((position) => {
       let mapOptions = {
-<<<<<<< HEAD
-        zoom: 12,
-=======
         zoom: 20,
         zoomControl: false,
         mapTypeControl: false,
@@ -98,7 +92,6 @@ class Maps extends Component {
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
->>>>>>> 31f5625b8a188382810ca1f21d7ca5cfe7f1ff9b
         center: { lat: position.coords.latitude, lng:  position.coords.longitude}
       };
       this.center = mapOptions.center
