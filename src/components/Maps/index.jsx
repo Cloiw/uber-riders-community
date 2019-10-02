@@ -8,6 +8,7 @@ import btnSeguridad from '../../img/btnSeguridad.png'
 import btnPanico from '../../img/btnPanico.png'
 import btnLocalizacion from '../../img/btnLocalizacion.png';
 import btnEmergencia from '../../img/btnEmergencia.png';
+import { Redirect } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -22,7 +23,7 @@ class Maps extends Component {
   constructor(props) {
     super(props);
     this.mapsRef = React.createRef();
-    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false }
+    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false }
     this.last_coordinate = {lat: 0, long:0};
     this.map = null;
     this.marker = null;
@@ -31,6 +32,8 @@ class Maps extends Component {
     this.createListener = this.createListener.bind(this)
     this.reCenter = this.reCenter.bind(this)
     this.isMakingPin = false;
+    this.newPinLat = 0;
+    this.newPinLong = 0;
   }
   
   reCenter(){
@@ -48,12 +51,14 @@ class Maps extends Component {
 
   createListener() {
     const createPin = google.maps.event.addListener(this.map, "click", (e) => {
-      let long = e.latLng.lng();
-      let lat = e.latLng.lat()
-      console.log(lat, long)
+      this.newPinLong = e.latLng.lng();
+      this.newPinLat = e.latLng.lat();
+      this.setState({creatingPin : true})
+      console.log(this.newPinLat)
     })
 
     if(this.isMakingPin === true ){
+      
       console.log("sip")
        return google.maps.event.addListener(createPin)
       }
@@ -157,9 +162,10 @@ class Maps extends Component {
 
     return (
       <div>
+      {this.state.creatingPin ===false ? (
+        <div>
         <Container fluid>
           <div className="pruebaa">
-            
             <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
           </div>
           <Row  bsPrefix="row prueba">
@@ -183,8 +189,10 @@ class Maps extends Component {
       
       <div id="divMap" ref={this.mapsRef} >
       </div></div>
+        ) : <div>CREA TU WEA DE PIN</div> }
+    </div>
     )
-  }
+      }
 }
 
 
