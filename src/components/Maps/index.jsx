@@ -161,6 +161,10 @@ class Maps extends Component {
     return (
       <div>
         <Container fluid>
+          <div className="pruebaa">
+            
+            <button className="btn-create-pin" onClick={()=> this.reCenter() }> center </button>
+          </div>
           <Row  bsPrefix="row prueba">
             <Col xs={4}>
               <img id='security'className='icons'src={btnSeguridad} />
