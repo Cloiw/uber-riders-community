@@ -94,7 +94,9 @@ class Report extends React.Component {
             </Row>
             <Row>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">{this.state.reportDate}</p>
+                <p className="textCenter">{new Date(this.state.reportDate).toLocaleDateString()}<br/>
+                {new Date(this.state.reportDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                </p>
               </Col>
               <Col xs={6} md={6} xl={6}>
                 <p className="textCenter">Puma 1180, Recoleta</p>
