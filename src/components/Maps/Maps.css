@@ -14,12 +14,36 @@
     z-index: 10;
     width: 100%;
 }
+.pruebaa {
+  display: inline-flex;
+  position: fixed;
+  z-index: 15;
+  right: 10px;
+  top: 70px;
+}
+
+.icons-top {
+  width: 100%;
+  height: 70px;
+  display: inline-flex !important;
+  position: fixed;
+  z-index: 15;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.btn-create-pin {
+  width: 70px;
+  height: 70px;
+  background:yellow;
+  border-radius: 50%;
+}
 
 .prueba > .col-4, .icons-top > .col-6 {
   display: flex;
   justify-content: center;
   align-content: center;
 }
+
 
 #btn-localizacion, #security{
   width: 60%;
@@ -34,4 +58,9 @@
 }
 #security{
   background-color: #44559D
+}
+.icons{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
 }

@@ -8,23 +8,23 @@ import btnSeguridad from '../../img/btnSeguridad.png'
 import btnPanico from '../../img/btnPanico.png'
 import btnLocalizacion from '../../img/btnLocalizacion.png';
 import btnEmergencia from '../../img/btnEmergencia.png';
-import AlertDismissible from '../Alerts/index'
+import AlertDismissible from '../Alerts/index';
+import { Redirect } from 'react-router-dom';
 import {
   Container,
   Row,
   Col,
   Alert,
 } from 'react-bootstrap';
-
 import './Maps.css'
-
+import CreatePin from '../CreatePin';
 const google = window.google;
 
 class Maps extends Component {
   constructor(props) {
     super(props);
     this.mapsRef = React.createRef();
-    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false }
+    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false }
     this.last_coordinate = {lat: 0, long:0};
     this.map = null;
     this.marker = null;
@@ -33,7 +33,9 @@ class Maps extends Component {
     this.createListener = this.createListener.bind(this)
     this.reCenter = this.reCenter.bind(this)
     this.active = false
-    console.log(this.active)
+    this.isMakingPin = false;
+    this.newPinLat = 0;
+    this.newPinLong = 0;
   }
   
   reCenter(){
@@ -44,27 +46,25 @@ class Maps extends Component {
   }
 
   changeIsMakingPin() {
-    console.log(this.state.isMakingPin)
-    this.setState({
-      isMakingPin: !this.state.isMakingPin
-    })
-    console.log(this.state.isMakingPin,"aqui cambia")
+    console.log(!this.isMakingPin)
+    this.isMakingPin = !this.isMakingPin;
     this.createListener()
-    console.log(this.state.isMakingPin,"termina")
   }
 
   createListener() {
     const createPin = google.maps.event.addListener(this.map, "click", (e) => {
-      let long = e.latLng.lng();
-      let lat = e.latLng.lat()
-      console.log(lat, long)
+      this.newPinLong = e.latLng.lng();
+      this.newPinLat = e.latLng.lat();
+      this.setState({creatingPin : true})
+      console.log(this.newPinLat)
     })
 
-    if(this.state.isMakingPin === true ){
+    if(this.isMakingPin === true ){
+      
       console.log("sip")
        return google.maps.event.addListener(createPin)
       }
-      console.log("xaus")
+      console.log("quitar evento")
        google.maps.event.clearListeners(this.map, 'click');
   }
 
@@ -83,12 +83,7 @@ class Maps extends Component {
       this.allOk()
     })
   }
-  // Handleclick() {
-  //  this.setState({active: true})
-  // this.showPins()
-   
-  //  console.log('me clickeraon')
-  // }
+
   showPins() {
     this.active = !this.active 
     console.log(this.state.pins)
@@ -187,6 +182,7 @@ class Maps extends Component {
     //   })
     
       
+<<<<<<< HEAD
     //   this.state.pins.map(e=>{ 
     //     const icon = {
     //       url: require(`../../img/${e.data.identify}.png`),
@@ -208,13 +204,48 @@ class Maps extends Component {
       
     // })
           
+=======
+  
+
+      this.state.pins.map(e=>{ 
+        const icon = {
+          url: require(`../../img/${e.data.identify}.png`),
+          scaledSize: new google.maps.Size(60, 60), 
+        };
+        let marker = new google.maps.Marker({
+          position: { lat: e.data.location.lat, lng:  e.data.location.long },
+          map: this.map,
+          title: 'Laboratoria',
+          icon: icon,
+        });
+          marker.addListener('click', () => { 
+           window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+
+          });
+          marker.setMap(this.map)
+
+        });
+
+    })
+
+>>>>>>> 78ca3d93968680b3ac1fe00f1987ca8b5b657d6f
   }
         
   render() {
 
     return (
       <div>
+      {this.state.creatingPin ===false ? (
+        <div>
         <Container fluid>
+          <div className="pruebaa">
+            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
+          </div>
+          <Row bsPrefix="row icons-top">
+              <img className='icons'src={btnBusqueda} />
+              <button className="icons">CLP</button>
+              <img className='icons'src={btnCondcutor} />
+          </Row>
           <Row  bsPrefix="row prueba">
             <Col xs={4}>
               <button id='security' onClick={() => this.showPins()} className='icons'src={btnSeguridad}></button> 
@@ -237,8 +268,10 @@ class Maps extends Component {
       
       <div id="divMap" ref={this.mapsRef} >
       </div></div>
+        ) : <CreatePin lat={this.newPinLat} long={this.newPinLong}/> }
+    </div>
     )
-  }
+      }
 }
 
 
