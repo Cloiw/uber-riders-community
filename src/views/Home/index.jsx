@@ -5,14 +5,6 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import btnBusqueda from '../../img/btnBusqueda.png'
-import btnIniciar from '../../img/btnIniciar.png'
-import btnCondcutor from '../../img/user_icon.png'
-import btnSeguridad from '../../img/btnSeguridad.png'
-import btnPanico from '../../img/btnPanico.png'
-import btnLocalizacion from '../../img/btnLocalizacion.png';
-import btnEmergencia from '../../img/btnEmergencia.png';
-import CLP from '../../img/CLP.png'
 import './Home.css'
 
 const Home = () => (
