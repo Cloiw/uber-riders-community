@@ -37,7 +37,7 @@ class Maps extends Component {
   allOk() {
     navigator.geolocation.getCurrentPosition((position) => {
       let mapOptions = {
-        zoom: 20,
+        zoom: 12,
         center: { lat: position.coords.latitude, lng:  position.coords.longitude}
       };
       this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
