@@ -8,16 +8,16 @@ import btnSeguridad from '../../img/btnSeguridad.png'
 import btnPanico from '../../img/btnPanico.png'
 import btnLocalizacion from '../../img/btnLocalizacion.png';
 import btnEmergencia from '../../img/btnEmergencia.png';
-import { Redirect } from 'react-router-dom'
+import AlertDismissible from '../Alerts/index';
+import { Redirect } from 'react-router-dom';
 import {
   Container,
   Row,
   Col,
+  Alert,
 } from 'react-bootstrap';
-
 import './Maps.css'
 import CreatePin from '../CreatePin';
-
 const google = window.google;
 
 class Maps extends Component {
@@ -32,6 +32,7 @@ class Maps extends Component {
     this.changeIsMakingPin = this.changeIsMakingPin.bind(this);
     this.createListener = this.createListener.bind(this)
     this.reCenter = this.reCenter.bind(this)
+    this.active = false
     this.isMakingPin = false;
     this.newPinLat = 0;
     this.newPinLong = 0;
@@ -66,6 +67,8 @@ class Maps extends Component {
       console.log("quitar evento")
        google.maps.event.clearListeners(this.map, 'click');
   }
+
+  
   
   componentDidMount() { 
     const googleScript = document.getElementById('google-map-script')
@@ -80,6 +83,47 @@ class Maps extends Component {
       this.allOk()
     })
   }
+
+  showPins() {
+    this.active = !this.active 
+    console.log(this.state.pins)
+    
+    if(this.active === true){
+      console.log(this.active)
+      db.collection("pins").onSnapshot((querySnapshot)=>{
+        this.setState({
+          pins: querySnapshot.docs.map(doc => {     
+            return {data: doc.data() }
+          })
+        })
+        this.state.pins.map(e=>{ 
+              const icon = {
+                url: require(`../../img/${e.data.identify}.png`),
+                scaledSize: new google.maps.Size(60, 60), 
+              };
+              let marker = new google.maps.Marker({
+                position: { lat: e.data.location.lat, lng:  e.data.location.long },
+                map: this.map,
+                title: 'Laboratoria',
+                icon: icon,
+              });
+                marker.addListener('click', () => { 
+                 window.location = `/Report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+      
+                });
+                marker.setMap(this.map)
+      
+              });
+    })
+  }else {
+    google.maps.event.clearListeners(this.map)
+  // this.setState({pins:[]})
+
+  console.log('pins',this.state.pins, 'data',this.state.data)
+  }
+  console.log('click:',this.active)
+}
+  
 
   allOk() {
     console.log("all")
@@ -109,8 +153,6 @@ class Maps extends Component {
       this.marker.setMap(this.map)
       this.loaded_map = true;
     })
-
-    
     navigator.geolocation.watchPosition((position) => {
       if(this.samePosition(position) || !this.loaded_map) {
         return;
@@ -127,15 +169,17 @@ class Maps extends Component {
       transitLayer.setMap(this.map);
     })
 
-    db.collection("pins").onSnapshot((querySnapshot)=>{
+    // db.collection("pins").onSnapshot((querySnapshot)=>{
       
-      this.setState({
-        pins: querySnapshot.docs.map(doc => {     
-          return {data: doc.data() }
-        })
-      })
+    //   this.setState({
+    //     pins: querySnapshot.docs.map(doc => {     
+    //       return {data: doc.data() }
+    //     })
+    //   })
+    
+      
+  
 
-      
       this.state.pins.map(e=>{ 
         const icon = {
           url: require(`../../img/${e.data.identify}.png`),
@@ -176,18 +220,19 @@ class Maps extends Component {
           </Row>
           <Row  bsPrefix="row prueba">
             <Col xs={4}>
-              <img id='security'className='icons'src={btnSeguridad} />
-              <img id='panic'className='icons'src={btnPanico} />
+              <button id='security' onClick={() => this.showPins()} className='icons'src={btnSeguridad}></button> 
+              <button id='panic'className='icons'src={btnPanico}></button> 
             </Col>
             <Col xs={4}>
               <img className='icons'src={btnIniciar} />
             </Col>
             <Col xs={4}>
-              <button onClick={()=> this.reCenter() }> center </button>
+              <button id='btn-localizacion' onClick={()=> this.reCenter() }> center </button>
             </Col>
             <Col>
               <Row>
                 <img className='sos' src={btnEmergencia}></img>
+               {/* < AlertDismissible /> */}
               </Row>
             </Col>
           </Row>
