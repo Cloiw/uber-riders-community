@@ -9,17 +9,12 @@ html, body, #root {
     height: 100% !important;
     min-height: 100%;
 }
-.icons{
-    width: 90%;
-}
+
 .clp{
     width: 100%;
     align-self: center;
 }
 
-.icons-top{
-margin-top: 5%;
-}
 
 .icons-top > .col-3, .icons-top > .col-6 {
     display: flex;

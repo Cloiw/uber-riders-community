@@ -16,6 +16,7 @@ import {
 } from 'react-bootstrap';
 
 import './Maps.css'
+import CreatePin from '../CreatePin';
 
 const google = window.google;
 
@@ -168,6 +169,11 @@ class Maps extends Component {
           <div className="pruebaa">
             <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
           </div>
+          <Row bsPrefix="row icons-top">
+              <img className='icons'src={btnBusqueda} />
+              <button className="icons">CLP</button>
+              <img className='icons'src={btnCondcutor} />
+          </Row>
           <Row  bsPrefix="row prueba">
             <Col xs={4}>
               <img id='security'className='icons'src={btnSeguridad} />
@@ -189,7 +195,7 @@ class Maps extends Component {
       
       <div id="divMap" ref={this.mapsRef} >
       </div></div>
-        ) : <div>CREA TU WEA DE PIN</div> }
+        ) : <CreatePin lat={this.newPinLat} long={this.newPinLong}/> }
     </div>
     )
       }

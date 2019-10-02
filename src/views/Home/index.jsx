@@ -20,17 +20,7 @@ const Home = () => (
     <Row>
       <Maps/>
     </Row>
-      <Row bsPrefix="row icons-top">
-        <Col xs={3}>
-          <img className='icons'src={btnBusqueda} />
-        </Col>
-        <Col xs={6}>
-          <img className='icons clp'src={CLP} />
-        </Col>
-        <Col xs={3}>
-          <img className='icons'src={btnCondcutor} />
-        </Col>
-      </Row>
+      
       <Col  bsPrefix="col btns-bottom ">
         <Row>
           <Col xs={4}>
