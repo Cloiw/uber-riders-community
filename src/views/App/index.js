@@ -3,7 +3,6 @@ import Home from '../Home';
 import Report from '../Report';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 const App = () => (
 
   <Router  basename="/uber-riders-community/">
