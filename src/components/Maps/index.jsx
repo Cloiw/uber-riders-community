@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import userIcon from '../../img/user_icon.png';
 import { db } from '../../data/firebase';
-import { Link } from 'react-router-dom';
 
 import './Maps.css'
 

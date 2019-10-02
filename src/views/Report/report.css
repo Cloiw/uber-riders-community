@@ -1,20 +1,84 @@
+/* root {
+  --colorPinPolice: #5ea458;
+  --colorPinHelp: #79a5cd;
+  --coloPinAccident: #8774b5;
+  --colorPinCrane: #d8b44c;
+  --colorPinSuspiciousPassenger: #F77629;
+  --colorPinSteal: #ce3f32;
+} */
+
+p {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.pinPolice {
+  background-color: #5ea458;
+}
+
+.pinHelp {
+  background-color: #79a5cd;
+}
+
+.pinAccident {
+  background-color: #8774b5;
+}
+
+.pinCrane {
+  background-color: #d8b44c;
+}
+
+.pinSusiciusPassenger {
+  background-color: #F77629;
+}
+
+.pinThief {
+  background-color: #ce3f32;
+}
+
 .buttonBack {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
 }
 
-.bgColor {
-  background-color: #2E4FBE;
+.icon {
+  width: 30px;
+  height: 30px;
+  margin: 5px 3px 5px 3px;
+  padding: 0px 0px 0px 0px;
 }
-
-.bgColorOpacity {
-  background-color: #2e50be62;
-}
-
-.bgColorWhite {
-  background-color:#FFFFFF;
-}
-
 .fontWhite {
-  color: white;
+  color: #FFFFFF;
 }
+
+.textCenter {
+  text-align: center;
+  margin: 0px;
+}
+
+.mtop {
+  margin: 10px 0px 0px 0px;
+}
+
+.photoUser {
+  height: 80px;
+  width: 80px;
+  align-items: center;
+}
+
+#reportDescription {
+  height: 100px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.048);
+  padding: 3px 3px 3px 3px;
+  margin: 0 0 0 0;
+    text-align: justify;
+    display: grid;
+    align-content: center;
+}
+
+/* #containerUser {
+ 
+} */
+
