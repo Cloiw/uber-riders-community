@@ -1,22 +1,44 @@
 
-.btns-top{
-    margin-top: 10%;
+html, body, #root {
+    min-height: 100%;
+    height: 100%; 
 }
-.btns-bottom{
-    margin-top: 115%;
+
+.container-fluid{
+    margin: 0;
+    height: 100% !important;
+    min-height: 100%;
 }
 .icons{
-    width: 75%;
- 
+    width: 90%;
 }
 .clp{
-    width: 120%;
-    margin-left: -30%;
-    margin-top: 10%;
+    width: 100%;
+    height: 80%;
+    align-self: center;
 }
+
+.icons-top{
+margin-top: 5%;
+}
+
+.icons-top > .col-3, .icons-top > .col-6 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.btns-bottom {
+    position: fixed !important;
+    bottom: 1px;
+    left: 1px;
+    padding: 0!important;
+
+}
+
 .sos{
-    margin-left: 5%;
-    margin-top: 10%;
+    margin: 3%;
+    width: 94%;
 }
 .bg-sos{
    color: white;

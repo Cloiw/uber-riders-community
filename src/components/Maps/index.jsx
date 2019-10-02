@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import userIcon from '../../img/user_icon.png';
 import { db } from '../../data/firebase';
-import { Link } from 'react-router-dom';
-
 import './Maps.css'
 
 const google = window.google;
@@ -47,7 +45,6 @@ class Maps extends Component {
         center: { lat: position.coords.latitude, lng:  position.coords.longitude}
       };
       this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
-      this.map = new google.maps.Map(this.mapsRef.current, mapOptions);
       const icon = {
         url: userIcon,
         scaledSize: new google.maps.Size(80, 80), 
@@ -86,7 +83,7 @@ class Maps extends Component {
         })
       })
       
-      this.state.pins.map(e=>{ console.log(e.data.location.lat)
+      this.state.pins.forEach(e=>{ console.log(e.data.location.lat)
         const icon = {
           url: require(`../../img/${e.data.identify}.png`),
           scaledSize: new google.maps.Size(60, 60), 
