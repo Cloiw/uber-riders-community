@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../data/firebase';
@@ -65,8 +64,7 @@ class Report extends React.Component {
                 <img src={back} className="icon" alt="Volver atrás"></img>
               </Link>
             </Col>
-
-
+        
             <Col xs={8} sm={8} md={8} xl={8}>
               <h3 className="fontWhite">{this.state.reportName}</h3>
             </Col>
@@ -121,8 +119,9 @@ class Report extends React.Component {
               </Col>
 
             </Row>
+          <Container>
 
-
+          </Container>
             <Row>
               <Col xs={12} sm={12} md={12} xl={12}>
                 <h4>Comentarios</h4>

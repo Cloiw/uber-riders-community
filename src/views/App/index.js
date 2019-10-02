@@ -4,9 +4,10 @@ import Report from '../Report';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const App = () => (
 
-  <Router>
+  <Router  basename="/uber-riders-community/">
       <Switch>
         <Route
           exact
