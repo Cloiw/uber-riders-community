@@ -22,31 +22,30 @@ const Home = () => (
     </Row>
       <Row bsPrefix="row icons-top">
         <Col xs={3}>
-          <img class='icons'src={btnBusqueda} />
+          <img className='icons'src={btnBusqueda} />
         </Col>
         <Col xs={6}>
-          <img class='icons clp'src={CLP} />
+          <img className='icons clp'src={CLP} />
         </Col>
         <Col xs={3}>
-          <img class='icons'src={btnCondcutor} />
+          <img className='icons'src={btnCondcutor} />
         </Col>
       </Row>
       <Col  bsPrefix="col btns-bottom ">
         <Row>
           <Col xs={4}>
-            <img id='security'class='icons'src={btnSeguridad} />
-            <img id='panic'class='icons'src={btnPanico} />
+ 
           </Col>
           <Col xs={4}>
-            <img class='icons'src={btnIniciar} />
+     
           </Col>
           <Col xs={4}>
-            <img class='icons'src={btnLocalizacion} />
+            
           </Col>
         </Row>
         <Row xs={12}>
           <Col> 
-            <img class='sos' src={btnEmergencia}></img>
+            
           </Col> 
         </Row>
       </Col>

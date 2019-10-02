@@ -1,6 +1,22 @@
 #divMap {
   width: 100%;
   height: 100%;
-  position: absolute;
   overflow: hidden;
+  position: absolute;
+}
+
+
+
+.prueba {
+    position: fixed !important;
+    bottom: 2px;
+    padding: 0!important;
+    z-index: 10;
+    width: 100%;
+}
+
+.prueba > .col-4, .icons-top > .col-6 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
