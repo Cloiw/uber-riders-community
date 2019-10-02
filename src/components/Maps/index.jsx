@@ -121,12 +121,13 @@ class Maps extends Component {
               });
     })
   }else {
-    google.maps.event.clearListeners(this.map)
-  // this.setState({pins:[]})
-
-  console.log('pins',this.state.pins, 'data',this.state.data)
+    // marker.setMap(null)
+  // this.setState({pins: []})
+  this.setState({pins: null})
+   
+  // console.log('pins',this.state.pins, 'data',this.state.data)
   }
-  console.log('click:',this.active)
+  // console.log('click:',this.active)
 }
   
 
@@ -155,9 +156,10 @@ class Maps extends Component {
         title: 'Laboratoria',
         icon: icon,
       });
+
       this.marker.setMap(this.map)
       this.loaded_map = true;
-    })
+    });
     navigator.geolocation.watchPosition((position) => {
       if(this.samePosition(position) || !this.loaded_map) {
         return;
@@ -173,6 +175,8 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
+   
+     
 
     // db.collection("pins").onSnapshot((querySnapshot)=>{
       
@@ -203,9 +207,9 @@ class Maps extends Component {
     //     });
       
     // })
-  
+          
   }
-
+        
   render() {
 
     return (
