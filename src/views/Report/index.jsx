@@ -56,7 +56,7 @@ class Report extends React.Component {
   geocoder(location){ 
     let lat= location.lat;
     let lng= location.long;
-    fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?key=nqwjoGIde77r65d8PHVTi2KbII88bOeb&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`)
+    fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?key=nqwjoGIde77r65d8PHVTi2KbII88bOeb&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`)
     .then(res=> 
       res.json().then(res=>{
         this.setState({street: (res.results[0].locations[0].street),
