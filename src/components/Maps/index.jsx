@@ -162,44 +162,7 @@ class Maps extends Component {
 
       this.marker.setMap(this.map)
       this.loaded_map = true;
-
-
-
-  //   var geocoder = new google.maps.Geocoder;
-  //   var infowindow = new google.maps.InfoWindow;
-
-    
-    
-
-  // function geocodeLatLng(geocoder, map, infowindow) {
-  //   var lat = position.coords.latitude
-  //   console.log('lat:',lat)
-  //   var coords = ( position.coords.longitude)
-  //   console.log('lng:',coords)
-  //   var contac = lat.contact('', coords)
-  //   console.log('contac:',contac)
-  //   var latlngStr = contac.split(',', 2); 
-  //   console.log('split:',latlngStr)   
-  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  //   geocoder.geocode({'location': latlng}, function(results, status) {
-  //     if (status === 'OK') {
-  //       if (results[0]) {
-  //         map.setZoom(11);
-  //         var marker = new google.maps.Marker({
-  //           position: latlng,
-  //           map: map
-  //         });
-  //         infowindow.setContent(results[0].formatted_address);
-  //         infowindow.open(map, marker);
-  //       }
-  //     }
-  //   })
-  // }
-
-  // geocodeLatLng(geocoder, this.map, infowindow);
-
-
-  
+ 
     });
   
   
