@@ -4,7 +4,10 @@
   overflow: hidden;
   position: absolute;
 }
-
+.alcien{ 
+  width: 100%;
+  height: 100%;
+}
 .prueba {
     position: fixed !important;
     bottom: 2px;

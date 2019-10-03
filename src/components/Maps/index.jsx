@@ -14,8 +14,6 @@ import CreatePinIcon from '../../img/create-pin.png'
 import {
   Container,
   Row,
-  Col,
-  Alert,
 } from 'react-bootstrap';
 import './Maps.css'
 import CreatePin from '../CreatePin';
@@ -40,6 +38,7 @@ class Maps extends Component {
   }
   
   reCenter(){
+    console.log("ckic")
     this.map.setCenter(this.center);
     this.map.setZoom(15)
   }
@@ -215,26 +214,26 @@ class Maps extends Component {
   render() {
 
     return (
-      <div>
+      <div className="alcien">
       {this.state.creatingPin ===false ? (
-        <div>
+        <div className="alcien">
         <Container fluid>
           <div className="pruebaa">
           {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
-            <img src={CreatePinIcon} className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
+            <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
            
           </div>
           <Row bsPrefix="row icons-top">
-              <img className='icons'src={btnBusqueda} />
-              <img className="icons CLP" src={CLP} />
-              <img className='icons'src={btnCondcutor} />
+              <img alt="Busqueda" className='icons'src={btnBusqueda} />
+              <img alt="CLP" className="icons CLP" src={CLP} />
+              <img alt="Conductor" className='icons'src={btnCondcutor} />
           </Row>
     
           <Row  bsPrefix="row icons-bot">
             
-              <img id='security' onClick={() => this.showPins()} className='icons'src={!this.active ? btnSeguridad : btnSeguridadActivo}/> 
-              <img id="start" className='icons'src={btnIniciar} />
-              <img className='icons' src={locIcon} id='btn-localizacion' onClick={()=> this.reCenter() } />
+              <img alt="Seguridad" id='security' onClick={() => this.showPins()} className='icons'src={!this.active ? btnSeguridad : btnSeguridadActivo}/> 
+              <img alt="Iniciar" id="start" className='icons'src={btnIniciar} />
+              <img alt="Localizar" className='icons' src={locIcon} id='btn-localizacion' onClick={()=> this.reCenter() } />
           </Row>
           
           <Row className="row alert-bot">

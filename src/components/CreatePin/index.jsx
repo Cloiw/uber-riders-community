@@ -11,6 +11,8 @@ import accident from '../../img/accident_circle.png'
 import crane from '../../img/crane_circle.png'
 import need_help from '../../img/need_help_circle.png'
 import { db } from '../../data/firebase';
+
+import './CreatePin.css'
 class CreatePin extends Component {
   constructor(props) {
     super(props);
@@ -88,27 +90,27 @@ class CreatePin extends Component {
     console.log(this.props.lat,this.props.long )
     console.log(this.state.description)
     return (
-      <Container>
+      <Container fluid>
         <Row>
-          <div>
-            <p>Crea tu pin</p>
+          <div className="create-title">
+            <p>CREACIÓN DE PIN</p>
           </div>
         </Row>
-        <Row>
+        <Row  bsPrefix="row identify-icon-container">
           <Col>
-            <Row>
+            <Row  bsPrefix="row identify-icon-row">
               <img onClick={() => this.selectIdentify("police") } src={police} alt="Police" />
               <img onClick={() => this.selectIdentify("accident") } src={accident} alt="Accident" />
             </Row>
           </Col>
           <Col>
-            <Row>
+            <Row  bsPrefix="row identify-icon-row">
               <img onClick={() => this.selectIdentify("thief") } src={thief} alt="Thief" />
               <img onClick={() => this.selectIdentify("crane") } src={crane} alt="Crane" />
             </Row>
           </Col>
           <Col>
-            <Row>
+            <Row  bsPrefix="row identify-icon-row">
               <img onClick={() => this.selectIdentify("susp_passenger") } src={susp_passenger} alt="Susp Pass" />
               <img onClick={() => this.selectIdentify("need_help") } src={need_help} alt="Need Help" />
             </Row>
