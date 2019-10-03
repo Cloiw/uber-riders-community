@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from '../Home';
 import Report from '../Report';
+import CreatePin from '../../components/CreatePin';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,11 @@ const App = () => (
           exact
           path="/"
           component={Home}
+        />
+        <Route
+          exact
+          path="/report/new/:lat/:long"
+          render={(props) => <CreatePin {...props} />}
         />
         <Route
           exact
