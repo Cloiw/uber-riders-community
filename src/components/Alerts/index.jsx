@@ -16,20 +16,23 @@ import {
     
     return (
       <>
-        <Alert show={show} variant="danger">
+        <Alert show={show} variant="fixbg">
+          
           <Alert.Heading>Alerta de Emergencia</Alert.Heading>
           <p>
-            La alerta de emergencia se enviara en 5 segundos.
+            La alerta de emergencia se enviará en 5 segundos.
           </p>
           <p>
-            Si no tienes ninguna emergencia presiona el boton cancelar.
+            Si no tienes ninguna emergencia presiona el botón cancelar.
           </p>
           <hr />
           <div className="d-flex justify-content-end">
-            <Button onClick={() => setShow(false)} variant="outline-danger">
+            <Button onClick={() => setShow(false)} variant="outline-danger emerg-btn">
              Cancelar Alerta
             </Button>
+          
           </div>
+
         </Alert>
   
         {!show && <Button id='sos'onClick={() => closeAlert()}>EMERGENCIA</Button>}

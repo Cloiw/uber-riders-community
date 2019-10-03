@@ -70,10 +70,10 @@ class Maps extends Component {
     if(this.isMakingPin === true ){
       
       console.log("sip")
-       return google.maps.event.addListener(createPin)
+        return google.maps.event.addListener(createPin)
       }
       console.log("quitar evento")
-       google.maps.event.clearListeners(this.map, 'click');
+        google.maps.event.clearListeners(this.map, 'click');
   }
 
   
@@ -83,7 +83,7 @@ class Maps extends Component {
     console.log(googleScript)
     if (window.google) {
       console.log("if")
-       return this.allOk()
+        return this.allOk()
     }
 
     googleScript.addEventListener('load', () => {
@@ -116,7 +116,7 @@ class Maps extends Component {
                 icon: icon,
               });
                 marker.addListener('click', () => { 
-                 window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+                  window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
       
                 });
                 marker.setMap(this.map)
@@ -127,7 +127,7 @@ class Maps extends Component {
     // marker.setMap(null)
   // this.setState({pins: []})
   this.setState({pins: null})
-   
+
   // console.log('pins',this.state.pins, 'data',this.state.data)
   }
   // console.log('click:',this.active)
@@ -163,43 +163,6 @@ class Maps extends Component {
       this.marker.setMap(this.map)
       this.loaded_map = true;
 
-
-
-  //   var geocoder = new google.maps.Geocoder;
-  //   var infowindow = new google.maps.InfoWindow;
-
-    
-    
-
-  // function geocodeLatLng(geocoder, map, infowindow) {
-  //   var lat = position.coords.latitude
-  //   console.log('lat:',lat)
-  //   var coords = ( position.coords.longitude)
-  //   console.log('lng:',coords)
-  //   var contac = lat.contact('', coords)
-  //   console.log('contac:',contac)
-  //   var latlngStr = contac.split(',', 2); 
-  //   console.log('split:',latlngStr)   
-  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  //   geocoder.geocode({'location': latlng}, function(results, status) {
-  //     if (status === 'OK') {
-  //       if (results[0]) {
-  //         map.setZoom(11);
-  //         var marker = new google.maps.Marker({
-  //           position: latlng,
-  //           map: map
-  //         });
-  //         infowindow.setContent(results[0].formatted_address);
-  //         infowindow.open(map, marker);
-  //       }
-  //     }
-  //   })
-  // }
-
-  // geocodeLatLng(geocoder, this.map, infowindow);
-
-
-  
     });
   
   
@@ -269,7 +232,7 @@ class Maps extends Component {
           <div className="pruebaa">
           {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
             <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
-           
+
           </div>
           <Row bsPrefix="row icons-top">
               <img alt="Busqueda" className='icons'src={btnBusqueda} />
@@ -287,10 +250,10 @@ class Maps extends Component {
           <Row className="row alert-bot">
             < AlertDismissible /> 
           </Row>
-           
-         
-     
-             
+      
+      
+    
+            
         
             
               

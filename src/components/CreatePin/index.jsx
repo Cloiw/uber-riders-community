@@ -1,18 +1,19 @@
-  import React, {Component} from 'react';
-  import {
-    Container,
-    Row,
-    Col,
-  } from 'react-bootstrap';
-  import { Link } from 'react-router-dom';
-  import back from '../../img/arrowBack.png'
-  import police from '../../img/police_circle.png';
-  import thief from '../../img/thief_circle.png'
-  import susp_passenger from '../../img/susp_passenger_circle.png';
-  import accident from '../../img/accident_circle.png';
-  import crane from '../../img/crane_circle.png';
-  import need_help from '../../img/need_help_circle.png';
-  import { db } from '../../data/firebase';
+import React, {Component} from 'react';
+import {
+  Container,
+  Row,
+  Col,
+} from 'react-bootstrap';
+import police from '../../img/police_circle.png'
+import thief from '../../img/thief_circle.png'
+import susp_passenger from '../../img/susp_passenger_circle.png'
+import accident from '../../img/accident_circle.png'
+import crane from '../../img/crane_circle.png'
+import need_help from '../../img/need_help_circle.png'
+import { db } from '../../data/firebase';
+import back from '../../img/arrowBack.png';
+import { Link } from 'react-router-dom';
+
 
   import './CreatePin.css'
   class CreatePin extends Component {
@@ -88,52 +89,59 @@
     }
 
 
-    render() {
-      console.log(this.props.lat,this.props.long )
-      console.log(this.state.description)
-      return (
-        <Container fluid>
-          <Row>
-            <div className="create-title">
-             <Col xs={2} sm={2} md={2} xl={2}>
+  render() {
+    console.log(this.props.lat,this.props.long )
+    console.log(this.state.description)
+    return (
+      <Container fluid bsPrefix="reports container-fluid">
+        <Row bsPrefix="report-header">
               <Link to="/">
-                <img src={back} className="icon" alt="Volver atrás"></img>
+                <img id='arrow' src={back} className="icon" alt="Volver atrás"></img>
               </Link>
-            </Col>
-            <Col xs={10} sm={10} md={10} xl={10}>
-            
-              <p>Crear reporte</p>
-            
-            </Col>
-            </div>
-          </Row>
-          <Row  bsPrefix="row identify-icon-container">
-            <Col>
-              <Row  bsPrefix="row identify-icon-row">
-                <img onClick={() => this.selectIdentify("police") } className={this.state.identify == "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />
-                <img onClick={() => this.selectIdentify("accident") } className={this.state.identify == "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
-              </Row>
-            </Col>
-            <Col>
-              <Row  bsPrefix="row identify-icon-row">
-                <img onClick={() => this.selectIdentify("thief") } className={this.state.identify == "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
-                <img onClick={() => this.selectIdentify("crane") } className={this.state.identify == "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
-              </Row>
-            </Col>
-            <Col>
-              <Row  bsPrefix="row identify-icon-row">
+              <div className="create-title">
+                 <h4 id='title'>Crear Reporte</h4>
+              </div>
+        </Row>
+        <Row  bsPrefix="row identify-icon-container">
+          <Col>
+            <Row  bsPrefix="row identify-icon-row">
+              <Col><img onClick={() => this.selectIdentify("police") } className={this.state.identify == "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />
+              <h5 className='txt-indetify'>Policia</h5>
+              </Col>
+              <Col><img onClick={() => this.selectIdentify("accident") } className={this.state.identify == "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
+              <h5 className='txt-indetify'>Accidente</h5>
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Row  bsPrefix="row identify-icon-row">
+              <Col><img onClick={() => this.selectIdentify("thief") } className={this.state.identify == "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
+              <h5 className='txt-indetify'>Robo</h5>
+              </Col>
+              <Col><img onClick={() => this.selectIdentify("crane") } className={this.state.identify == "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
+              <h5 className='txt-indetify'>Grúa</h5>
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Row  bsPrefix="row identify-icon-row">
+              <Col >
                 <img onClick={() => this.selectIdentify("susp_passenger") } className={this.state.identify == "susp_passenger" ? "btn-iden selected-btn-iden" : "btn-iden"} src={susp_passenger} alt="Susp Pass" />
-                <img onClick={() => this.selectIdentify("need_help") } className={this.state.identify == "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
-              </Row>
-            </Col>
-          </Row>
-          <Row>
-            <p>Ingresa tu reporte</p>
-            <textarea rows={10} cols={30} value={this.state.description}  placeholder="Descripción"   onChange={(event) => this.changeDescription(event)} />
-          </Row>
-          <Row>
-            <button onClick={()=> this.savePin()}>Reportar</button>
-          
+               <h5 className='txt-indetify'>Pasajero Sospechoso</h5>
+              </Col>
+              <Col><img id='long-text' onClick={() => this.selectIdentify("need_help") } className={this.state.identify == "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
+              <h5 className='txt-indetify'>Necesito Ayuda</h5>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <textarea className='txt-area'rows={7} cols={30} value={this.state.description}  placeholder="Escribe aquí tu reporte"   onChange={(event) => this.changeDescription(event)} />
+        </Row>
+        <Row bsPrefix="buttons">
+          <button className='btns-report' onClick={()=> this.savePin()}> Reportar</button>
+
+        
 
           </Row>
         </Container>
