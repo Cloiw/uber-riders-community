@@ -71,7 +71,7 @@ import { Link } from 'react-router-dom';
         id: nameDoc,
         description: this.state.description,
         identify: this.state.identify,
-        location : { lat:this.lat, long:this.long},
+        location : { lat: parseFloat(this.lat), long: parseFloat(this.long)},
         time: time,
         title: title,
         comments: []
@@ -94,6 +94,7 @@ import { Link } from 'react-router-dom';
 
 
   render() {
+    console.log(this.state.description)
     return (
       <Container>
         <Row bsPrefix="row icons-top report-header">
