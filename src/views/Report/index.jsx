@@ -31,7 +31,7 @@ class Report extends React.Component {
         reportLocation: querySnapshot.data().location,
         reportComments: querySnapshot.data().comments,
       })
-      console.log(querySnapshot.data().comments[0].comment);
+      
 
       // let reportLocation = querySnapshot.data().location;
       // let latLng = { lat: parseFloat(reportLocation.lat), lng: parseFloat(reportLocation.long)  }
@@ -131,15 +131,15 @@ class Report extends React.Component {
                 <h4>Comentarios</h4>
               </Col>
               <Col xs={12} sm={12} md={12} xl={12}>
-                {/* <p className="textCenter fontWhite">{this.state.reportComments}</p> */}
-                {this.state.reportComments.map(comment => {
+                {console.log(this.state.reportComments)}
+                {this.state.reportComments.length != 0 ? this.state.reportComments.map(comment => {
                   return (
                     <div>
                       <p>{comment.author}</p>
                       <p>{comment.comment}</p>
                     </div>
                   )
-                })
+                }) : <div><p>Aún no hay comentarios</p></div>
                 }
               </Col>
             </Row>

@@ -67,7 +67,8 @@ class CreatePin extends Component {
       identify: this.state.identify,
       location : { lat:this.props.lat, long:this.props.long},
       time: time,
-      title: title
+      title: title,
+      comments: []
       }
 
     if(this.state.identify === ""){

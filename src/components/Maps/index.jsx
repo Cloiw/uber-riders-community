@@ -7,7 +7,6 @@ import btnCondcutor from '../../img/user_icon.png'
 import btnSeguridad from '../../img/btnSeguridad.png'
 import btnPanico from '../../img/btnPanico.png'
 import btnLocalizacion from '../../img/btnLocalizacion.png';
-import btnEmergencia from '../../img/btnEmergencia.png';
 import AlertDismissible from '../Alerts/index';
 import { Redirect } from 'react-router-dom';
 import {
