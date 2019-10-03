@@ -180,26 +180,26 @@ class Maps extends Component {
       
   
 
-      this.state.pins.map(e=>{ 
-        const icon = {
-          url: require(`../../img/${e.data.identify}.png`),
-          scaledSize: new google.maps.Size(60, 60), 
-        };
-        let marker = new google.maps.Marker({
-          position: { lat: e.data.location.lat, lng:  e.data.location.long },
-          map: this.map,
-          title: 'Laboratoria',
-          icon: icon,
-        });
-          marker.addListener('click', () => { 
-           window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+    //   this.state.pins.map(e=>{ 
+    //     const icon = {
+    //       url: require(`../../img/${e.data.identify}.png`),
+    //       scaledSize: new google.maps.Size(60, 60), 
+    //     };
+    //     let marker = new google.maps.Marker({
+    //       position: { lat: e.data.location.lat, lng:  e.data.location.long },
+    //       map: this.map,
+    //       title: 'Laboratoria',
+    //       icon: icon,
+    //     });
+    //       marker.addListener('click', () => { 
+    //        window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
 
-          });
-          marker.setMap(this.map)
+    //       });
+    //       marker.setMap(this.map)
 
-        });
+    //     });
 
-    })
+    // })
 
   }
 
@@ -231,8 +231,7 @@ class Maps extends Component {
             </Col>
             <Col>
               <Row>
-                <img className='sos' src={btnEmergencia}></img>
-               {/* < AlertDismissible /> */}
+               < AlertDismissible /> 
               </Row>
             </Col>
           </Row>
