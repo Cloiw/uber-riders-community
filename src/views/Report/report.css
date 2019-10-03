@@ -28,7 +28,7 @@ p {
   background-color: #d8b44c;
 }
 
-.pinSusiciusPassenger {
+.pinSuspiciousPassenger {
   background-color: #F77629;
 }
 
@@ -81,25 +81,3 @@ p {
 /* #containerUser {
  
 } */
-
-=======
-.buttonBack {
-  width: 60px;
-  height: 60px;
-}
-
-.bgColor {
-  background-color: #2E4FBE;
-}
-
-.bgColorOpacity {
-  background-color: #2e50be62;
-}
-
-.bgColorWhite {
-  background-color:#FFFFFF;
-}
-
-.fontWhite {
-  color: white;
-}
