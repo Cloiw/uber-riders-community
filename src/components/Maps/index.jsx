@@ -210,30 +210,34 @@ class Maps extends Component {
         <div>
         <Container fluid>
           <div className="pruebaa">
-            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
+            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }>
+              pin
+            </button>
           </div>
           <Row bsPrefix="row icons-top">
               <img className='icons'src={btnBusqueda} />
               <button className="icons">CLP</button>
               <img className='icons'src={btnCondcutor} />
           </Row>
-          <Row  bsPrefix="row prueba">
-            <Col xs={4}>
+    
+          <Row  bsPrefix="row icons-bot">
               <button id='security' onClick={() => this.showPins()} className='icons'src={btnSeguridad}></button> 
-              <button id='panic'className='icons'src={btnPanico}></button> 
-            </Col>
-            <Col xs={4}>
               <img className='icons'src={btnIniciar} />
-            </Col>
-            <Col xs={4}>
-              <button id='btn-localizacion' onClick={()=> this.reCenter() }> center </button>
-            </Col>
-            <Col>
-              <Row>
-               < AlertDismissible /> 
-              </Row>
-            </Col>
+              <button className='icons' id='btn-localizacion' onClick={()=> this.reCenter() }> center </button>
           </Row>
+          
+          <Row className="row alert-bot">
+            < AlertDismissible /> 
+          </Row>
+           
+         
+     
+             
+        
+            
+              
+            
+          
           </Container>
       
       <div id="divMap" ref={this.mapsRef} >

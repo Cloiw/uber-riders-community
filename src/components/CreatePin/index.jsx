@@ -4,12 +4,12 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import police from '../../img/police.png'
-import thief from '../../img/thief.png'
-import susp_passenger from '../../img/susp_passenger.png'
-import accident from '../../img/accident.png'
-import crane from '../../img/crane.png'
-import need_help from '../../img/need_help.png'
+import police from '../../img/police_circle.png'
+import thief from '../../img/thief_circle.png'
+import susp_passenger from '../../img/susp_passenger_circle.png'
+import accident from '../../img/accident_circle.png'
+import crane from '../../img/crane_circle.png'
+import need_help from '../../img/need_help_circle.png'
 import { db } from '../../data/firebase';
 class CreatePin extends Component {
   constructor(props) {
