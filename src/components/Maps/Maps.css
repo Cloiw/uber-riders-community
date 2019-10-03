@@ -33,6 +33,7 @@
 
 .icons-bot{
   bottom: 55px;
+  height: 100px;
 }
 
 .alert-bot{
@@ -51,13 +52,24 @@
   background-color: white;
 }
 
-#security{
+#security, #btn-localizacion{
   border-radius: 50%;
-  background-color: #44559D
+  margin-top: 35px;
 }
 
 .icons{
   width: 50px;
   height: 50px;
   margin: 10px;
+}
+
+#start {
+  width: 80px;
+  height: 80px;
+}
+
+.CLP {
+  width: 140px;
+  height: 40px;
+  align-self: center;
 }

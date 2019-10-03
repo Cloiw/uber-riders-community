@@ -5,9 +5,10 @@ import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
 import btnSeguridad from '../../img/btnSeguridad.png'
-import btnPanico from '../../img/btnPanico.png'
-import btnLocalizacion from '../../img/btnLocalizacion.png';
+import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
+import locIcon from '../../img/location_icon.png';
 import AlertDismissible from '../Alerts/index';
+import CLP from '../../img/CLP.png'
 import { Redirect } from 'react-router-dom';
 import {
   Container,
@@ -39,6 +40,7 @@ class Maps extends Component {
   
   reCenter(){
     this.map.setCenter(this.center);
+    this.map.setZoom(15)
   }
   samePosition(position) {
     return (this.last_coordinate.lat === position.coords.latitude && this.last_coordinate.long === position.coords.longitude);
@@ -128,7 +130,7 @@ class Maps extends Component {
     console.log("all")
     navigator.geolocation.getCurrentPosition((position) => {
       let mapOptions = {
-        zoom: 20,
+        zoom: 15,
         zoomControl: false,
         mapTypeControl: false,
         scaleControl: false,
@@ -216,14 +218,15 @@ class Maps extends Component {
           </div>
           <Row bsPrefix="row icons-top">
               <img className='icons'src={btnBusqueda} />
-              <button className="icons">CLP</button>
+              <img className="icons CLP" src={CLP} />
               <img className='icons'src={btnCondcutor} />
           </Row>
     
           <Row  bsPrefix="row icons-bot">
-              <button id='security' onClick={() => this.showPins()} className='icons'src={btnSeguridad}></button> 
-              <img className='icons'src={btnIniciar} />
-              <button className='icons' id='btn-localizacion' onClick={()=> this.reCenter() }> center </button>
+            
+              <img id='security' onClick={() => this.showPins()} className='icons'src={!this.active ? btnSeguridad : btnSeguridadActivo}/> 
+              <img id="start" className='icons'src={btnIniciar} />
+              <img className='icons' src={locIcon} id='btn-localizacion' onClick={()=> this.reCenter() } />
           </Row>
           
           <Row className="row alert-bot">
