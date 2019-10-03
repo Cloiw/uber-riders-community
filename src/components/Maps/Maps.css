@@ -4,9 +4,10 @@
   overflow: hidden;
   position: absolute;
 }
-
-
-
+.alcien{ 
+  width: 100%;
+  height: 100%;
+}
 .prueba {
     position: fixed !important;
     bottom: 2px;
@@ -14,6 +15,7 @@
     z-index: 10;
     width: 100%;
 }
+
 .pruebaa {
   display: inline-flex;
   position: fixed;
@@ -22,7 +24,7 @@
   top: 70px;
 }
 
-.icons-top {
+.icons-top, .icons-bot, .alert-bot {
   width: 100%;
   height: 70px;
   display: inline-flex !important;
@@ -31,36 +33,63 @@
   justify-content: space-between;
   flex-wrap: nowrap;
 }
+
+.icons-bot{
+  bottom: 55px;
+  height: 100px;
+}
+
+.alert-bot{
+  bottom: 5px;
+  height: 50px;
+}
+
+
+.text-create{
+  padding: 5px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.836);
+  border-radius: 10px;
+  display: inline-flex;
+}
+div .text-create> h2 {
+  font-size: 20px;
+  margin: 8px 0 0 5px;
+  font-weight: bold;
+  font-family: 'Mukta', sans-serif;
+}
 .btn-create-pin {
-  width: 70px;
-  height: 70px;
-  background:yellow;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-}
-
-.prueba > .col-4, .icons-top > .col-6 {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-
-#btn-localizacion, #security{
-  width: 60%;
-  height: 65%;
-  border-radius: 50%;
-  margin-top: 12%;
- 
 }
 #btn-localizacion{
-  background-color: #fff;
-  margin-right: 20%;
+  border-radius: 50%;
+  background-color: white;
 }
-#security{
-  background-color: #44559D
+
+#security, #btn-localizacion{
+  border-radius: 50%;
+  margin-top: 35px;
 }
+
 .icons{
   width: 50px;
   height: 50px;
   margin: 10px;
+}
+
+#start {
+  width: 80px;
+  height: 80px;
+}
+
+.CLP {
+  width: 140px;
+  height: 40px;
+  align-self: center;
+}
+
+.border-active{
+  border: 5px rgb(177, 39, 39) solid;
 }

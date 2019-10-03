@@ -6,16 +6,21 @@ import './report.css';
 import back from '../../img/arrowBack.png';
 import menu from '../../img/menu.png';
 import photoUser from '../../img/user_icon.png'
+const google = window.google;
+
 
 class Report extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
-
+    this.state = {
+      reportComments: [],
+    }
   }
 
   componentDidMount() {
     const id = this.props.match.params;
+    // let google = window.google;
+    // var geocoder = new google.maps.Geocoder();
 
     db.collection("pins").doc(id.reportsId).onSnapshot((querySnapshot) => {
       console.log(querySnapshot);
@@ -25,7 +30,19 @@ class Report extends React.Component {
         reportDate: querySnapshot.data().time,
         reportIdentify: querySnapshot.data().identify,
         reportDescription: querySnapshot.data().description,
+        reportLocation: querySnapshot.data().location,
+        reportComments: querySnapshot.data().comments,
+        
       })
+      
+      this.geocoder(querySnapshot.data().location)
+      // let reportLocation = querySnapshot.data().location;
+      // let latLng = { lat: parseFloat(reportLocation.lat), lng: parseFloat(reportLocation.long)  }
+      // console.log(latLng)
+      // geocoder.geocode({"location": latLng}, (results, status) => {
+      //   console.log("results: ", results)
+      //   console.log("status: ", status)
+      // })
 
       db.collection("users").doc(querySnapshot.data().author).onSnapshot((dataAccess) => {
 
@@ -38,7 +55,6 @@ class Report extends React.Component {
         })
       })
 
-
       if (this.state.reportIdentify === "police") return this.setState({ classIdentify: "pinPolice" });
       if (this.state.reportIdentify === "need_help") return this.setState({ classIdentify: "pinHelp" });
       if (this.state.reportIdentify === "accident") return this.setState({ classIdentify: "pinAccident" });
@@ -47,21 +63,38 @@ class Report extends React.Component {
       if (this.state.reportIdentify === "thief") return this.setState({ classIdentify: "pinThief" });
     })
     console.log("color " + this.state.reportIdentify)
+   
   }
+ 
+
+  geocoder(location){ 
+    let lat= location.lat;
+    let lng= location.long;
+    fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?key=nqwjoGIde77r65d8PHVTi2KbII88bOeb&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`)
+    .then(res=> 
+     res.json().then(res=>{
+       this.setState({street: (res.results[0].locations[0].street),
+       area:(res.results[0].locations[0].adminArea5)})
+     })
+  )
+    
+  
+  
+   
+  }
+
 
   render() {
     return (
       <>
         <Container-Fluid>
-
           <Row className={this.state.classIdentify}>
             <Col xs={2} sm={2} md={2} xl={2}>
               <Link to="/">
-                {/* <button className="icon"> Atrás</button> */}
                 <img src={back} className="icon" alt="Volver atrás"></img>
               </Link>
             </Col>
-        
+
             <Col xs={8} sm={8} md={8} xl={8}>
               <h3 className="fontWhite">{this.state.reportName}</h3>
             </Col>
@@ -75,55 +108,61 @@ class Report extends React.Component {
 
           <Row id="reportDescription">
             <Col xs={12} sm={12} md={12} xl={12} className="">
-
               <p>{this.state.reportDescription}</p>
-
             </Col>
           </Row>
-
-
 
           <div id="containerDate" className={this.state.classIdentify}>
             <Row>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">Fecha: </p>
+                <p className="textCenter fontWhite">Fecha: </p>
               </Col>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">Ubicacion:</p>
+                <p className="textCenter fontWhite">Ubicacion:</p>
               </Col>
             </Row>
             <Row>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">{new Date(this.state.reportDate).toLocaleDateString()}<br/>
-                {new Date(this.state.reportDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                <p className="textCenter fontWhite">{new Date(this.state.reportDate).toLocaleDateString()}<br />
+                  {new Date(this.state.reportDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </p>
               </Col>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter">Puma 1180, Recoleta</p>
+                <p className="textCenter fontWhite">{this.state.street}<br/>{this.state.area}</p>
               </Col>
             </Row>
-
           </div>
-
 
           <Container>
             <Row id="containerUser">
               <Col xs={3} sm={3} md={3} xl={3}>
-                <div><img src={photoUser} className="photoUser" alt="Foto de Usuario">
-                </img></div>
+                <div>
+                  <img src={photoUser} className="photoUser" alt="Foto de Usuario"></img>
+                </div>
               </Col>
               <Col xs={9} sm={9} md={9} xl={9}>
                 <p>{this.state.userId}</p>
                 <p>{this.state.userCar} / {this.state.userPlate}</p>
               </Col>
-
             </Row>
-          <Container>
-
           </Container>
+
+          <Container>
             <Row>
               <Col xs={12} sm={12} md={12} xl={12}>
                 <h4>Comentarios</h4>
+              </Col>
+              <Col xs={12} sm={12} md={12} xl={12}>
+                {console.log(this.state.reportComments)}
+                {this.state.reportComments.length != 0 ? this.state.reportComments.map(comment => {
+                  return (
+                    <div>
+                      <p>{comment.author}</p>
+                      <p>{comment.comment}</p>
+                    </div>
+                  )
+                }) : <div><p>Aún no hay comentarios</p></div>
+                }
               </Col>
             </Row>
           </Container>

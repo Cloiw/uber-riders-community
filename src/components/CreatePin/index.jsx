@@ -4,13 +4,15 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import police from '../../img/police.png'
-import thief from '../../img/thief.png'
-import susp_passenger from '../../img/susp_passenger.png'
-import accident from '../../img/accident.png'
-import crane from '../../img/crane.png'
-import need_help from '../../img/need_help.png'
+import police from '../../img/police_circle.png'
+import thief from '../../img/thief_circle.png'
+import susp_passenger from '../../img/susp_passenger_circle.png'
+import accident from '../../img/accident_circle.png'
+import crane from '../../img/crane_circle.png'
+import need_help from '../../img/need_help_circle.png'
 import { db } from '../../data/firebase';
+
+import './CreatePin.css'
 class CreatePin extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +69,8 @@ class CreatePin extends Component {
       identify: this.state.identify,
       location : { lat:this.props.lat, long:this.props.long},
       time: time,
-      title: title
+      title: title,
+      comments: []
       }
 
     if(this.state.identify === ""){
@@ -87,29 +90,29 @@ class CreatePin extends Component {
     console.log(this.props.lat,this.props.long )
     console.log(this.state.description)
     return (
-      <Container>
+      <Container fluid>
         <Row>
-          <div>
-            <p>Crea tu pin</p>
+          <div className="create-title">
+            <p>CREACIÓN DE PIN</p>
           </div>
         </Row>
-        <Row>
+        <Row  bsPrefix="row identify-icon-container">
           <Col>
-            <Row>
-              <img onClick={() => this.selectIdentify("police") } src={police} alt="Police" />
-              <img onClick={() => this.selectIdentify("accident") } src={accident} alt="Accident" />
+            <Row  bsPrefix="row identify-icon-row">
+              <img onClick={() => this.selectIdentify("police") } className={this.state.identify == "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />
+              <img onClick={() => this.selectIdentify("accident") } className={this.state.identify == "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
             </Row>
           </Col>
           <Col>
-            <Row>
-              <img onClick={() => this.selectIdentify("thief") } src={thief} alt="Thief" />
-              <img onClick={() => this.selectIdentify("crane") } src={crane} alt="Crane" />
+            <Row  bsPrefix="row identify-icon-row">
+              <img onClick={() => this.selectIdentify("thief") } className={this.state.identify == "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
+              <img onClick={() => this.selectIdentify("crane") } className={this.state.identify == "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
             </Row>
           </Col>
           <Col>
-            <Row>
-              <img onClick={() => this.selectIdentify("susp_passenger") } src={susp_passenger} alt="Susp Pass" />
-              <img onClick={() => this.selectIdentify("need_help") } src={need_help} alt="Need Help" />
+            <Row  bsPrefix="row identify-icon-row">
+              <img onClick={() => this.selectIdentify("susp_passenger") } className={this.state.identify == "susp_passenger" ? "btn-iden selected-btn-iden" : "btn-iden"} src={susp_passenger} alt="Susp Pass" />
+              <img onClick={() => this.selectIdentify("need_help") } className={this.state.identify == "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
             </Row>
           </Col>
         </Row>
