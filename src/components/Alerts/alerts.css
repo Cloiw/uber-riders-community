@@ -3,10 +3,12 @@
     background-color: red !important;
     border-color: red;
     border-radius: 10px;
-    width: 90%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    width: 100%;
     font-size: 20px;
     font-weight: 600;
-    margin-top: 5%
+    z-index: 100;
+}
+
+.alert{
+    bottom: 180px;
 }

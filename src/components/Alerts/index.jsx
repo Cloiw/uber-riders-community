@@ -19,10 +19,10 @@ import {
         <Alert show={show} variant="danger">
           <Alert.Heading>Alerta de Emergencia</Alert.Heading>
           <p>
-            La alerta de emergencia de enviara en 5 segundos.
+            La alerta de emergencia se enviara en 5 segundos.
           </p>
           <p>
-            Si no tienes ninguna emergencia presiona el boton Cancelar
+            Si no tienes ninguna emergencia presiona el boton cancelar.
           </p>
           <hr />
           <div className="d-flex justify-content-end">
