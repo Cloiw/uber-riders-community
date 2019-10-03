@@ -41,6 +41,7 @@
   height: 50px;
 }
 
+
 .text-create{
   padding: 5px;
   margin: 0;
@@ -84,4 +85,8 @@ div .text-create> h2 {
   width: 140px;
   height: 40px;
   align-self: center;
+}
+
+.border-active{
+  border: 5px rgb(177, 39, 39) solid;
 }

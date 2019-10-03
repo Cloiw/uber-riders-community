@@ -221,7 +221,7 @@ class Maps extends Component {
         <Container fluid>
           <div className="pruebaa">
           {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
-            <img src={CreatePinIcon} className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }/>
+            <img src={CreatePinIcon} className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
            
           </div>
           <Row bsPrefix="row icons-top">
