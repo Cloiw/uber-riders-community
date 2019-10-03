@@ -41,6 +41,19 @@
   height: 50px;
 }
 
+.text-create{
+  padding: 5px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.836);
+  border-radius: 10px;
+  display: inline-flex;
+}
+div .text-create> h2 {
+  font-size: 20px;
+  margin: 8px 0 0 5px;
+  font-weight: bold;
+  font-family: 'Mukta', sans-serif;
+}
 .btn-create-pin {
   width: 50px;
   height: 50px;

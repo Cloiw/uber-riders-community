@@ -25,7 +25,7 @@ class Maps extends Component {
   constructor(props) {
     super(props);
     this.mapsRef = React.createRef();
-    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false }
+    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false, showMakingText: false }
     this.last_coordinate = {lat: 0, long:0};
     this.map = null;
     this.marker = null;
@@ -48,6 +48,12 @@ class Maps extends Component {
   }
 
   changeIsMakingPin() {
+    if(this.state.showMakingText){
+      this.setState({showMakingText : false})
+      google.maps.event.clearListeners(this.map, 'click');
+      return
+    }
+    this.setState({showMakingText : true})
     console.log(!this.isMakingPin)
     this.isMakingPin = !this.isMakingPin;
     this.createListener()
@@ -57,6 +63,7 @@ class Maps extends Component {
     const createPin = google.maps.event.addListener(this.map, "click", (e) => {
       this.newPinLong = e.latLng.lng();
       this.newPinLat = e.latLng.lat();
+      this.setState({showMakingText : false})
       this.setState({creatingPin : true})
       console.log(this.newPinLat)
     })
@@ -213,7 +220,9 @@ class Maps extends Component {
         <div>
         <Container fluid>
           <div className="pruebaa">
+          {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
             <img src={CreatePinIcon} className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }/>
+           
           </div>
           <Row bsPrefix="row icons-top">
               <img className='icons'src={btnBusqueda} />
