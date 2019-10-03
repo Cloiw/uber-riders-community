@@ -9,7 +9,8 @@ import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
 import locIcon from '../../img/location_icon.png';
 import AlertDismissible from '../Alerts/index';
 import CLP from '../../img/CLP.png'
-import { Redirect } from 'react-router-dom';
+import CreatePinIcon from '../../img/create-pin.png'
+
 import {
   Container,
   Row,
@@ -212,9 +213,7 @@ class Maps extends Component {
         <div>
         <Container fluid>
           <div className="pruebaa">
-            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }>
-              pin
-            </button>
+            <img src={CreatePinIcon} className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }/>
           </div>
           <Row bsPrefix="row icons-top">
               <img className='icons'src={btnBusqueda} />
