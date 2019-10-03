@@ -71,7 +71,7 @@ import { Link } from 'react-router-dom';
         id: nameDoc,
         description: this.state.description,
         identify: this.state.identify,
-        location : { lat:this.lat, long:this.long},
+        location : { lat: parseFloat(this.lat), long: parseFloat(this.long)},
         time: time,
         title: title,
         comments: []
@@ -83,9 +83,6 @@ import { Link } from 'react-router-dom';
       console.log(data)
       db.collection('pins').doc(nameDoc).set(data)
       .then(() => {
-        this.setState({
-          loading:false
-        })
         window.location = '/';
       })
 
@@ -93,8 +90,6 @@ import { Link } from 'react-router-dom';
 
 
     render() {
-      console.log(this.lat,this.long )
-      console.log(this.state.description)
       return (
         <Container fluid bsPrefix="reports container-fluid">
         <Row bsPrefix="report-header">           
@@ -148,7 +143,7 @@ import { Link } from 'react-router-dom';
             <textarea className='txt-area'rows={7} cols={30} value={this.state.description}  placeholder="Escribe aquí tu reporte"   onChange={(event) => this.changeDescription(event)} />
         </Row>
         <Row bsPrefix="buttons">
-          <button className='btns-report' onClick={()=> this.savePin()}> Reportar</button>
+          {!this.state.loading ? (<button className='btns-report' onClick={()=> this.savePin()}> Reportar</button>) : (null)}
 
         
 
