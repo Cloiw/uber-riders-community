@@ -83,9 +83,6 @@ import { Link } from 'react-router-dom';
       console.log(data)
       db.collection('pins').doc(nameDoc).set(data)
       .then(() => {
-        this.setState({
-          loading:false
-        })
         window.location = '/';
       })
 
@@ -143,7 +140,7 @@ import { Link } from 'react-router-dom';
           <textarea className='txt-area'rows={7} cols={30} value={this.state.description}  placeholder="Escribe aquí tu reporte"   onChange={(event) => this.changeDescription(event)} />
         </Row>
         <Row >
-          <button className='btn-report' onClick={()=> this.savePin()}> Reportar</button>
+          {!this.state.loading ? (<button className='btn-report' onClick={()=> this.savePin()}> Reportar</button>) : (null)}
         </Row>
         </div>
        
