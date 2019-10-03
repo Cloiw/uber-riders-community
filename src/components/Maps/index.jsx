@@ -3,7 +3,7 @@ import userIcon from '../../img/user_icon.png';
 import { db } from '../../data/firebase';
 import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
-import btnCondcutor from '../../img/user_icon.png'
+import btnConductor from '../../img/user_icon.png'
 import btnSeguridad from '../../img/btnSeguridad.png'
 import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
 import locIcon from '../../img/location_icon.png';
@@ -274,7 +274,7 @@ class Maps extends Component {
           <Row bsPrefix="row icons-top">
               <img alt="Busqueda" className='icons'src={btnBusqueda} />
               <img alt="CLP" className="icons CLP" src={CLP} />
-              <img alt="Conductor" className='icons'src={btnCondcutor} />
+              <img alt="Conductor" className='icons'src={btnConductor} />
           </Row>
     
           <Row  bsPrefix="row icons-bot">
