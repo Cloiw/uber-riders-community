@@ -6,6 +6,8 @@ import './report.css';
 import back from '../../img/arrowBack.png';
 import menu from '../../img/menu.png';
 import photoUser from '../../img/user_icon.png'
+const google = window.google;
+
 
 class Report extends React.Component {
   constructor(props) {
@@ -30,9 +32,10 @@ class Report extends React.Component {
         reportDescription: querySnapshot.data().description,
         reportLocation: querySnapshot.data().location,
         reportComments: querySnapshot.data().comments,
+        
       })
       
-
+      this.geocoder(querySnapshot.data().location)
       // let reportLocation = querySnapshot.data().location;
       // let latLng = { lat: parseFloat(reportLocation.lat), lng: parseFloat(reportLocation.long)  }
       // console.log(latLng)
@@ -60,7 +63,26 @@ class Report extends React.Component {
       if (this.state.reportIdentify === "thief") return this.setState({ classIdentify: "pinThief" });
     })
     console.log("color " + this.state.reportIdentify)
+   
   }
+ 
+
+  geocoder(location){ 
+    let lat= location.lat;
+    let lng= location.long;
+    fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?key=nqwjoGIde77r65d8PHVTi2KbII88bOeb&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`)
+    .then(res=> 
+     res.json().then(res=>{
+       this.setState({street: (res.results[0].locations[0].street),
+       area:(res.results[0].locations[0].adminArea5)})
+     })
+  )
+    
+  
+  
+   
+  }
+
 
   render() {
     return (
@@ -106,7 +128,7 @@ class Report extends React.Component {
                 </p>
               </Col>
               <Col xs={6} md={6} xl={6}>
-                <p className="textCenter fontWhite">Puma 1180, Recoleta</p>
+                <p className="textCenter fontWhite">{this.state.street}<br/>{this.state.area}</p>
               </Col>
             </Row>
           </div>

@@ -124,12 +124,13 @@ class Maps extends Component {
               });
     })
   }else {
-    google.maps.event.clearListeners(this.map)
-  // this.setState({pins:[]})
-
-  console.log('pins',this.state.pins, 'data',this.state.data)
+    // marker.setMap(null)
+  // this.setState({pins: []})
+  this.setState({pins: null})
+   
+  // console.log('pins',this.state.pins, 'data',this.state.data)
   }
-  console.log('click:',this.active)
+  // console.log('click:',this.active)
 }
   
 
@@ -158,9 +159,51 @@ class Maps extends Component {
         title: 'Laboratoria',
         icon: icon,
       });
+
       this.marker.setMap(this.map)
       this.loaded_map = true;
-    })
+
+
+
+  //   var geocoder = new google.maps.Geocoder;
+  //   var infowindow = new google.maps.InfoWindow;
+
+    
+    
+
+  // function geocodeLatLng(geocoder, map, infowindow) {
+  //   var lat = position.coords.latitude
+  //   console.log('lat:',lat)
+  //   var coords = ( position.coords.longitude)
+  //   console.log('lng:',coords)
+  //   var contac = lat.contact('', coords)
+  //   console.log('contac:',contac)
+  //   var latlngStr = contac.split(',', 2); 
+  //   console.log('split:',latlngStr)   
+  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  //   geocoder.geocode({'location': latlng}, function(results, status) {
+  //     if (status === 'OK') {
+  //       if (results[0]) {
+  //         map.setZoom(11);
+  //         var marker = new google.maps.Marker({
+  //           position: latlng,
+  //           map: map
+  //         });
+  //         infowindow.setContent(results[0].formatted_address);
+  //         infowindow.open(map, marker);
+  //       }
+  //     }
+  //   })
+  // }
+
+  // geocodeLatLng(geocoder, this.map, infowindow);
+
+
+  
+    });
+  
+  
+        
     navigator.geolocation.watchPosition((position) => {
       if(this.samePosition(position) || !this.loaded_map) {
         return;
@@ -176,7 +219,8 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
-
+    
+          
     // db.collection("pins").onSnapshot((querySnapshot)=>{
       
     //   this.setState({
@@ -209,8 +253,12 @@ class Maps extends Component {
 
     // })
 
+    //     });
+      
+    // })
+          
   }
-
+        
   render() {
 
     return (
