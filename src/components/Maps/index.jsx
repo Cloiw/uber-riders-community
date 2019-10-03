@@ -5,26 +5,25 @@ import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
 import btnSeguridad from '../../img/btnSeguridad.png'
-import btnPanico from '../../img/btnPanico.png'
-import btnLocalizacion from '../../img/btnLocalizacion.png';
-import btnEmergencia from '../../img/btnEmergencia.png';
-import { Redirect } from 'react-router-dom'
+import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
+import locIcon from '../../img/location_icon.png';
+import AlertDismissible from '../Alerts/index';
+import CLP from '../../img/CLP.png'
+import CreatePinIcon from '../../img/create-pin.png'
+
 import {
   Container,
   Row,
-  Col,
 } from 'react-bootstrap';
-
 import './Maps.css'
 import CreatePin from '../CreatePin';
-
 const google = window.google;
 
 class Maps extends Component {
   constructor(props) {
     super(props);
     this.mapsRef = React.createRef();
-    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false }
+    this.state = { lat: 33.4107511, long: -70.6335647, isMakingPin: false, creatingPin: false, showMakingText: false }
     this.last_coordinate = {lat: 0, long:0};
     this.map = null;
     this.marker = null;
@@ -32,19 +31,28 @@ class Maps extends Component {
     this.changeIsMakingPin = this.changeIsMakingPin.bind(this);
     this.createListener = this.createListener.bind(this)
     this.reCenter = this.reCenter.bind(this)
+    this.active = false
     this.isMakingPin = false;
     this.newPinLat = 0;
     this.newPinLong = 0;
   }
   
   reCenter(){
+    console.log("ckic")
     this.map.setCenter(this.center);
+    this.map.setZoom(15)
   }
   samePosition(position) {
     return (this.last_coordinate.lat === position.coords.latitude && this.last_coordinate.long === position.coords.longitude);
   }
 
   changeIsMakingPin() {
+    if(this.state.showMakingText){
+      this.setState({showMakingText : false})
+      google.maps.event.clearListeners(this.map, 'click');
+      return
+    }
+    this.setState({showMakingText : true})
     console.log(!this.isMakingPin)
     this.isMakingPin = !this.isMakingPin;
     this.createListener()
@@ -54,7 +62,9 @@ class Maps extends Component {
     const createPin = google.maps.event.addListener(this.map, "click", (e) => {
       this.newPinLong = e.latLng.lng();
       this.newPinLat = e.latLng.lat();
-      this.setState({creatingPin : true})
+      this.setState({showMakingText : false})
+      // this.setState({creatingPin : true})
+      window.location = `/report/new/${e.latLng.lat()}/${e.latLng.lng()}`
       console.log(this.newPinLat)
     })
 
@@ -66,6 +76,8 @@ class Maps extends Component {
       console.log("quitar evento")
        google.maps.event.clearListeners(this.map, 'click');
   }
+
+  
   
   componentDidMount() { 
     const googleScript = document.getElementById('google-map-script')
@@ -81,11 +93,53 @@ class Maps extends Component {
     })
   }
 
+  showPins() {
+    this.active = !this.active 
+    console.log(this.state.pins)
+    
+    if(this.active === true){
+      console.log(this.active)
+      db.collection("pins").onSnapshot((querySnapshot)=>{
+        this.setState({
+          pins: querySnapshot.docs.map(doc => {     
+            return {data: doc.data() }
+          })
+        })
+        this.state.pins.map(e=>{ 
+              const icon = {
+                url: require(`../../img/${e.data.identify}.png`),
+                scaledSize: new google.maps.Size(60, 60), 
+              };
+              let marker = new google.maps.Marker({
+                position: { lat: e.data.location.lat, lng:  e.data.location.long },
+                map: this.map,
+                title: 'Laboratoria',
+                icon: icon,
+              });
+                marker.addListener('click', () => { 
+                 window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+      
+                });
+                marker.setMap(this.map)
+      
+              });
+    })
+  }else {
+    // marker.setMap(null)
+  // this.setState({pins: []})
+  this.setState({pins: null})
+   
+  // console.log('pins',this.state.pins, 'data',this.state.data)
+  }
+  // console.log('click:',this.active)
+}
+  
+
   allOk() {
     console.log("all")
     navigator.geolocation.getCurrentPosition((position) => {
       let mapOptions = {
-        zoom: 20,
+        zoom: 15,
         zoomControl: false,
         mapTypeControl: false,
         scaleControl: false,
@@ -106,11 +160,51 @@ class Maps extends Component {
         title: 'Laboratoria',
         icon: icon,
       });
+
       this.marker.setMap(this.map)
       this.loaded_map = true;
-    })
+
+
+
+  //   var geocoder = new google.maps.Geocoder;
+  //   var infowindow = new google.maps.InfoWindow;
 
     
+    
+
+  // function geocodeLatLng(geocoder, map, infowindow) {
+  //   var lat = position.coords.latitude
+  //   console.log('lat:',lat)
+  //   var coords = ( position.coords.longitude)
+  //   console.log('lng:',coords)
+  //   var contac = lat.contact('', coords)
+  //   console.log('contac:',contac)
+  //   var latlngStr = contac.split(',', 2); 
+  //   console.log('split:',latlngStr)   
+  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  //   geocoder.geocode({'location': latlng}, function(results, status) {
+  //     if (status === 'OK') {
+  //       if (results[0]) {
+  //         map.setZoom(11);
+  //         var marker = new google.maps.Marker({
+  //           position: latlng,
+  //           map: map
+  //         });
+  //         infowindow.setContent(results[0].formatted_address);
+  //         infowindow.open(map, marker);
+  //       }
+  //     }
+  //   })
+  // }
+
+  // geocodeLatLng(geocoder, this.map, infowindow);
+
+
+  
+    });
+  
+  
+        
     navigator.geolocation.watchPosition((position) => {
       if(this.samePosition(position) || !this.loaded_map) {
         return;
@@ -126,76 +220,88 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
-
-    db.collection("pins").onSnapshot((querySnapshot)=>{
+    
+          
+    // db.collection("pins").onSnapshot((querySnapshot)=>{
       
-      this.setState({
-        pins: querySnapshot.docs.map(doc => {     
-          return {data: doc.data() }
-        })
-      })
-
+    //   this.setState({
+    //     pins: querySnapshot.docs.map(doc => {     
+    //       return {data: doc.data() }
+    //     })
+    //   })
+    
       
-      this.state.pins.map(e=>{ 
-        const icon = {
-          url: require(`../../img/${e.data.identify}.png`),
-          scaledSize: new google.maps.Size(60, 60), 
-        };
-        let marker = new google.maps.Marker({
-          position: { lat: e.data.location.lat, lng:  e.data.location.long },
-          map: this.map,
-          title: 'Laboratoria',
-          icon: icon,
-        });
-          marker.addListener('click', () => { 
-           window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+  
 
-          });
-          marker.setMap(this.map)
+    //   this.state.pins.map(e=>{ 
+    //     const icon = {
+    //       url: require(`../../img/${e.data.identify}.png`),
+    //       scaledSize: new google.maps.Size(60, 60), 
+    //     };
+    //     let marker = new google.maps.Marker({
+    //       position: { lat: e.data.location.lat, lng:  e.data.location.long },
+    //       map: this.map,
+    //       title: 'Laboratoria',
+    //       icon: icon,
+    //     });
+    //       marker.addListener('click', () => { 
+    //        window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
 
-        });
+    //       });
+    //       marker.setMap(this.map)
 
-    })
+    //     });
 
+    // })
+
+    //     });
+      
+    // })
+          
   }
-
+        
   render() {
 
     return (
-      <div>
+      <div className="alcien">
       {this.state.creatingPin ===false ? (
-        <div>
+        <div className="alcien">
         <Container fluid>
           <div className="pruebaa">
-            <button className="btn-create-pin" onClick={()=> this.changeIsMakingPin() }> center </button>
+          {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
+            <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
+           
           </div>
           <Row bsPrefix="row icons-top">
-              <img className='icons'src={btnBusqueda} />
-              <button className="icons">CLP</button>
-              <img className='icons'src={btnCondcutor} />
+              <img alt="Busqueda" className='icons'src={btnBusqueda} />
+              <img alt="CLP" className="icons CLP" src={CLP} />
+              <img alt="Conductor" className='icons'src={btnCondcutor} />
           </Row>
-          <Row  bsPrefix="row prueba">
-            <Col xs={4}>
-              <img id='security'className='icons'src={btnSeguridad} />
-              <img id='panic'className='icons'src={btnPanico} />
-            </Col>
-            <Col xs={4}>
-              <img className='icons'src={btnIniciar} />
-            </Col>
-            <Col xs={4}>
-              <button onClick={()=> this.reCenter() }> center </button>
-            </Col>
-            <Col>
-              <Row>
-                <img className='sos' src={btnEmergencia}></img>
-              </Row>
-            </Col>
+    
+          <Row  bsPrefix="row icons-bot">
+            
+              <img alt="Seguridad" id='security' onClick={() => this.showPins()} className='icons'src={!this.active ? btnSeguridad : btnSeguridadActivo}/> 
+              <img alt="Iniciar" id="start" className='icons'src={btnIniciar} />
+              <img alt="Localizar" className='icons' src={locIcon} id='btn-localizacion' onClick={()=> this.reCenter() } />
           </Row>
+          
+          <Row className="row alert-bot">
+            < AlertDismissible /> 
+          </Row>
+           
+         
+     
+             
+        
+            
+              
+            
+          
           </Container>
       
       <div id="divMap" ref={this.mapsRef} >
       </div></div>
-        ) : <CreatePin lat={this.newPinLat} long={this.newPinLong}/> }
+        ) : <CreatePin lat={this.newPinLat} long={this.newPinLong} /> }
     </div>
     )
       }
