@@ -154,7 +154,48 @@ class Maps extends Component {
 
       this.marker.setMap(this.map)
       this.loaded_map = true;
+
+
+
+  //   var geocoder = new google.maps.Geocoder;
+  //   var infowindow = new google.maps.InfoWindow;
+
+    
+    
+
+  // function geocodeLatLng(geocoder, map, infowindow) {
+  //   var lat = position.coords.latitude
+  //   console.log('lat:',lat)
+  //   var coords = ( position.coords.longitude)
+  //   console.log('lng:',coords)
+  //   var contac = lat.contact('', coords)
+  //   console.log('contac:',contac)
+  //   var latlngStr = contac.split(',', 2); 
+  //   console.log('split:',latlngStr)   
+  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  //   geocoder.geocode({'location': latlng}, function(results, status) {
+  //     if (status === 'OK') {
+  //       if (results[0]) {
+  //         map.setZoom(11);
+  //         var marker = new google.maps.Marker({
+  //           position: latlng,
+  //           map: map
+  //         });
+  //         infowindow.setContent(results[0].formatted_address);
+  //         infowindow.open(map, marker);
+  //       }
+  //     }
+  //   })
+  // }
+
+  // geocodeLatLng(geocoder, this.map, infowindow);
+
+
+  
     });
+  
+  
+        
     navigator.geolocation.watchPosition((position) => {
       if(this.samePosition(position) || !this.loaded_map) {
         return;
@@ -170,9 +211,8 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
-   
-     
-
+    
+          
     // db.collection("pins").onSnapshot((querySnapshot)=>{
       
     //   this.setState({
@@ -182,7 +222,6 @@ class Maps extends Component {
     //   })
     
       
-<<<<<<< HEAD
     //   this.state.pins.map(e=>{ 
     //     const icon = {
     //       url: require(`../../img/${e.data.identify}.png`),
@@ -204,31 +243,6 @@ class Maps extends Component {
       
     // })
           
-=======
-  
-
-      this.state.pins.map(e=>{ 
-        const icon = {
-          url: require(`../../img/${e.data.identify}.png`),
-          scaledSize: new google.maps.Size(60, 60), 
-        };
-        let marker = new google.maps.Marker({
-          position: { lat: e.data.location.lat, lng:  e.data.location.long },
-          map: this.map,
-          title: 'Laboratoria',
-          icon: icon,
-        });
-          marker.addListener('click', () => { 
-           window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
-
-          });
-          marker.setMap(this.map)
-
-        });
-
-    })
-
->>>>>>> 78ca3d93968680b3ac1fe00f1987ca8b5b657d6f
   }
         
   render() {
@@ -259,8 +273,8 @@ class Maps extends Component {
             </Col>
             <Col>
               <Row>
-                <img className='sos' src={btnEmergencia}></img>
-               {/* < AlertDismissible /> */}
+                {/* <img className='sos' src={btnEmergencia}></img> */}
+               < AlertDismissible />
               </Row>
             </Col>
           </Row>
