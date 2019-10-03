@@ -117,7 +117,7 @@ class Maps extends Component {
                 icon: icon,
               });
                 marker.addListener('click', () => { 
-                 window.location = `/Report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+                 window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
       
                 });
                 marker.setMap(this.map)
