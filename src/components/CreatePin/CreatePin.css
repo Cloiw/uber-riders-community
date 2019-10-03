@@ -1,32 +1,79 @@
-.create-title {
-  height: 70px;
-  background-color: black;
+#all-create{
+  padding:0;
+}
+
+#title {
   color: white;
   font-weight: bold;
-  width: 100%;
-  text-align: center;
-  align-items: center;
-  display: flex;
+  margin-left: 30%;
+  margin-top: -8.5%
+}
+#arrow{
+  margin-top: 5%;
+  margin-left: 5%
+}
+.report-header{
+  background-color: black;
+  height: 70px; 
   justify-content: center;
-  font-size: 35px;
+ 
 }
 
 div .create-title > p {
   margin: 0
 }
 
+
 .identify-icon-row {
   justify-content: center;
 }
 
 .identify-icon-container {
-  margin: 10px;
+  margin: 20px;
 }
 
 .btn-iden {
   width: 80px;
+  margin-left: 15%;
 }
 .selected-btn-iden {
-  border: 5px black solid;
+  filter: saturate(2%);
+  border: 8px black solid;
   border-radius: 50%;
 }
+.txt-indetify{
+  color: black;
+  padding:10%;
+  padding-bottom: 30%;
+  text-align: center;
+  justify-content: center;
+
+ 
+}
+#long-text{
+  margin-top: -30%;
+}
+
+.txt-area{
+  width:90%;
+  height: 50%;
+  margin-left: 5%;
+  border-color: gray;
+  margin-top:-7%;
+  background-color: rgb(209, 209, 209)
+}
+.btns-report{
+  background-color: black;
+  color: white;
+  padding: 3% 30%;
+  font-size: 26px;
+  font-weight: 500;
+  margin-top: 4%;
+  margin-left: 5%
+
+}
+
+textarea-placeholder{
+  font-size: 20px;
+}
+
