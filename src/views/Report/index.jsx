@@ -70,30 +70,27 @@ class Report extends React.Component {
     return (
       <>
         <Container >
-          <Row className={this.state.classIdentify}>
-            <Col xs={2} sm={2} md={2} xl={2}>
-              <Link to="/">
-                <img src={back} className="icon" alt="Volver atrás"></img>
-              </Link>
-            </Col>
-
-            <Col xs={8} sm={8} md={8} xl={8}>
-              <h3 className="fontWhite">{this.state.reportName}</h3>
-            </Col>
-
-            <Col xs={2} sm={2} md={2} xl={2}>
-              {/* <button className="icon" src="">Menú</button> */}
-              <img src={menu} className="icon" alt="Botón de menú"></img>
+          <Row className={this.state.classIdentify+" title-report"}>
+            <Link to="/">
+              <img src={back} className="icon icon-arrow" alt="Volver atrás"></img>
+            </Link>
+            <h4 className="fontWhite ">{this.state.reportName}</h4>
+            {/* <button className="icon" src="">Menú</button> */}
+            <img src={menu} className="icon icon-dot" alt="Botón de menú"></img>
+          </Row>
+          <Row id="containerUser">  
+            {this.state.userIcon !=null && 
+            <img src={require(`../../img/${this.state.userIcon}.png`)} className="photoUser" alt="Foto de Usuario" />}
+            <Col bsPrefix="align-user col">
+              <p className="p-report-name">{this.state.userId}</p>
+              <p className="p-report-name">{this.state.userCar} / {this.state.userPlate}</p>
             </Col>
           </Row>
-
-
           <Row id="reportDescription">
             
               <p>{this.state.reportDescription}</p>
          
           </Row>
-
             <Row bsPrefix={this.state.classIdentify+" marginrow row"} >
               <Col  bsPrefix="subt right col" xs={6} >
                 <p className="fontWhite">Fecha </p>
@@ -116,36 +113,29 @@ class Report extends React.Component {
                 <p className="textRight ">{this.state.street}<br/>{this.state.area}</p>
               </Col>
             </Row>
-        
-          
-         
-            <Row id="containerUser">  
-            <div className={this.state.classIdentify+"-color-hr"}></div>
-              <Col xs={3} sm={3} md={3} xl={3}>
-             
-                  {this.state.userIcon !=null && 
-                  <img src={require(`../../img/${this.state.userIcon}.png`)} className="photoUser" alt="Foto de Usuario" />}
-               
-              </Col>
-              <Col xs={9} sm={9} md={9} xl={9}>
-                <p>{this.state.userId}</p>
-                <p>{this.state.userCar} / {this.state.userPlate}</p>
-              </Col>
-            </Row>
+      
           
 
         
             <Row>
-              <Col xs={12} sm={12} md={12} xl={12}>
+            <div className={this.state.classIdentify+"-color-hr"}></div>
+              <Col bsPrefix="comentarios col-12">
                 <h4>Comentarios</h4>
               </Col>
-              <Col xs={12} sm={12} md={12} xl={12}>
+              <Col bsPrefix="comentarios-map col-12">
                 {console.log(this.state.reportComments)}
                 {this.state.reportComments.length != 0 ? this.state.reportComments.map(comment => {
                   return (
-                    <div>
-                      <p>{comment.author}</p>
-                      <p>{comment.comment}</p>
+                    <div className="comment-div">
+                      <Row bsPrefix="row-comment row">
+                        <img src={require(`../../img/${comment.author}.png`)} className="photoUserCom" alt="Foto de Usuario" />
+                        <Col bsPrefix="marginrow col">
+                          <p className="comment-name">{comment.name}</p>
+                        <div className="comment-col">
+                          <p className="comment-p">{comment.comment}</p>
+                        </div>
+                        </Col>
+                      </Row>
                     </div>
                   )
                 }) : <div><p>Aún no hay comentarios</p></div>
