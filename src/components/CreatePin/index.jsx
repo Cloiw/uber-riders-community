@@ -99,20 +99,20 @@ class CreatePin extends Component {
         <Row  bsPrefix="row identify-icon-container">
           <Col>
             <Row  bsPrefix="row identify-icon-row">
-              <img onClick={() => this.selectIdentify("police") } src={police} alt="Police" />
-              <img onClick={() => this.selectIdentify("accident") } src={accident} alt="Accident" />
+              <img onClick={() => this.selectIdentify("police") } className={this.state.identify == "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />
+              <img onClick={() => this.selectIdentify("accident") } className={this.state.identify == "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
             </Row>
           </Col>
           <Col>
             <Row  bsPrefix="row identify-icon-row">
-              <img onClick={() => this.selectIdentify("thief") } src={thief} alt="Thief" />
-              <img onClick={() => this.selectIdentify("crane") } src={crane} alt="Crane" />
+              <img onClick={() => this.selectIdentify("thief") } className={this.state.identify == "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
+              <img onClick={() => this.selectIdentify("crane") } className={this.state.identify == "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
             </Row>
           </Col>
           <Col>
             <Row  bsPrefix="row identify-icon-row">
-              <img onClick={() => this.selectIdentify("susp_passenger") } src={susp_passenger} alt="Susp Pass" />
-              <img onClick={() => this.selectIdentify("need_help") } src={need_help} alt="Need Help" />
+              <img onClick={() => this.selectIdentify("susp_passenger") } className={this.state.identify == "susp_passenger" ? "btn-iden selected-btn-iden" : "btn-iden"} src={susp_passenger} alt="Susp Pass" />
+              <img onClick={() => this.selectIdentify("need_help") } className={this.state.identify == "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
             </Row>
           </Col>
         </Row>

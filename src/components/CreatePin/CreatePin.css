@@ -22,3 +22,11 @@ div .create-title > p {
 .identify-icon-container {
   margin: 10px;
 }
+
+.btn-iden {
+  width: 80px;
+}
+.selected-btn-iden {
+  border: 5px black solid;
+  border-radius: 50%;
+}
