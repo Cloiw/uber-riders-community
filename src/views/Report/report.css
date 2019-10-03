@@ -11,7 +11,12 @@ p {
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
 }
+.pinAccident-color-hr {
 
+  background-color: #8774b5;
+  height: 1px;
+  width: 100%;
+}
 .pinPolice {
   background-color: #5ea458;
 }
@@ -50,11 +55,35 @@ p {
 }
 .fontWhite {
   color: #FFFFFF;
+  margin: 0;
 }
 
 .textCenter {
   text-align: center;
   margin: 0px;
+}
+
+.textRight {
+  margin: 5px 0px 5px 10px;
+ 
+}
+.subt {
+  border-bottom: 1px white solid;
+  text-align: center !important;
+  font-weight: bold;
+}
+
+.right{
+  border-right: 0.5px white solid;
+}
+
+.marginrow{
+  margin:0;
+}
+.date{
+  padding: 0 !important;
+  border-right: 0.5px white solid;
+  background-color:rgba(0, 0, 0, 0.047)
 }
 
 .mtop {
@@ -68,16 +97,13 @@ p {
 }
 
 #reportDescription {
-  height: 100px;
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.048);
-  padding: 3px 3px 3px 3px;
-  margin: 0 0 0 0;
+  
     text-align: justify;
     display: grid;
     align-content: center;
 }
 
-/* #containerUser {
- 
-} */
+div #reportDescription > p{
+  margin: 25px;
+}

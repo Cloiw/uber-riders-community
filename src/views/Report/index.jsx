@@ -6,25 +6,19 @@ import './report.css';
 import back from '../../img/arrowBack.png';
 import menu from '../../img/menu.png';
 import photoUser from '../../img/user_icon.png'
-const google = window.google;
-
 
 class Report extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reportComments: [],
+      reportComments: [],userIcon:null
     }
   }
 
   componentDidMount() {
-    const id = this.props.match.params;
-    // let google = window.google;
-    // var geocoder = new google.maps.Geocoder();
+    const id = this.props.match.params;;
 
     db.collection("pins").doc(id.reportsId).onSnapshot((querySnapshot) => {
-      console.log(querySnapshot);
-
       this.setState({
         reportName: querySnapshot.data().title,
         reportDate: querySnapshot.data().time,
@@ -36,13 +30,6 @@ class Report extends React.Component {
       })
       
       this.geocoder(querySnapshot.data().location)
-      // let reportLocation = querySnapshot.data().location;
-      // let latLng = { lat: parseFloat(reportLocation.lat), lng: parseFloat(reportLocation.long)  }
-      // console.log(latLng)
-      // geocoder.geocode({"location": latLng}, (results, status) => {
-      //   console.log("results: ", results)
-      //   console.log("status: ", status)
-      // })
 
       db.collection("users").doc(querySnapshot.data().author).onSnapshot((dataAccess) => {
 
@@ -50,7 +37,7 @@ class Report extends React.Component {
           userId: dataAccess.data().name,
           userCar: dataAccess.data().car_model,
           userPlate: dataAccess.data().plate,
-          userIcon: dataAccess.data().icon,
+          userIcon: dataAccess.data().id,
           photoUser: photoUser,
         })
       })
@@ -63,7 +50,6 @@ class Report extends React.Component {
       if (this.state.reportIdentify === "thief") return this.setState({ classIdentify: "pinThief" });
     })
     console.log("color " + this.state.reportIdentify)
-   
   }
  
 
@@ -72,22 +58,18 @@ class Report extends React.Component {
     let lng= location.long;
     fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?key=nqwjoGIde77r65d8PHVTi2KbII88bOeb&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`)
     .then(res=> 
-     res.json().then(res=>{
-       this.setState({street: (res.results[0].locations[0].street),
-       area:(res.results[0].locations[0].adminArea5)})
-     })
-  )
-    
-  
-  
-   
+      res.json().then(res=>{
+        this.setState({street: (res.results[0].locations[0].street),
+        area:(res.results[0].locations[0].adminArea5)})
+      })
+    )
   }
 
 
   render() {
     return (
       <>
-        <Container-Fluid>
+        <Container >
           <Row className={this.state.classIdentify}>
             <Col xs={2} sm={2} md={2} xl={2}>
               <Link to="/">
@@ -107,47 +89,52 @@ class Report extends React.Component {
 
 
           <Row id="reportDescription">
-            <Col xs={12} sm={12} md={12} xl={12} className="">
+            
               <p>{this.state.reportDescription}</p>
-            </Col>
+         
           </Row>
 
-          <div id="containerDate" className={this.state.classIdentify}>
-            <Row>
-              <Col xs={6} md={6} xl={6}>
-                <p className="textCenter fontWhite">Fecha: </p>
+            <Row bsPrefix={this.state.classIdentify+" marginrow row"} >
+              <Col  bsPrefix="subt right col" xs={6} >
+                <p className="fontWhite">Fecha </p>
               </Col>
-              <Col xs={6} md={6} xl={6}>
-                <p className="textCenter fontWhite">Ubicacion:</p>
+              <Col  bsPrefix="subt left col" xs={6}>
+                <p className="fontWhite">Ubicación</p>
               </Col>
             </Row>
-            <Row>
-              <Col xs={6} md={6} xl={6}>
-                <p className="textCenter fontWhite">{new Date(this.state.reportDate).toLocaleDateString()}<br />
-                  {new Date(this.state.reportDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            <Row bsPrefix={" marginrow row"}>
+              <Col  bsPrefix="date col" xs={6}>
+                {this.state.reportDate != undefined && 
+                <p className="textRight ">{new Date(this.state.reportDate).toLocaleDateString()}<br />
+                  {new Date(this.state.reportDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })+" hrs."}
                 </p>
+                }
+                
               </Col>
-              <Col xs={6} md={6} xl={6}>
-                <p className="textCenter fontWhite">{this.state.street}<br/>{this.state.area}</p>
+            
+              <Col bsPrefix="date col" xs={6}>
+                <p className="textRight ">{this.state.street}<br/>{this.state.area}</p>
               </Col>
             </Row>
-          </div>
-
-          <Container>
-            <Row id="containerUser">
+        
+          
+         
+            <Row id="containerUser">  
+            <div className={this.state.classIdentify+"-color-hr"}></div>
               <Col xs={3} sm={3} md={3} xl={3}>
-                <div>
-                  <img src={photoUser} className="photoUser" alt="Foto de Usuario"></img>
-                </div>
+             
+                  {this.state.userIcon !=null && 
+                  <img src={require(`../../img/${this.state.userIcon}.png`)} className="photoUser" alt="Foto de Usuario" />}
+               
               </Col>
               <Col xs={9} sm={9} md={9} xl={9}>
                 <p>{this.state.userId}</p>
                 <p>{this.state.userCar} / {this.state.userPlate}</p>
               </Col>
             </Row>
-          </Container>
+          
 
-          <Container>
+        
             <Row>
               <Col xs={12} sm={12} md={12} xl={12}>
                 <h4>Comentarios</h4>
@@ -165,8 +152,9 @@ class Report extends React.Component {
                 }
               </Col>
             </Row>
+      
           </Container>
-        </Container-Fluid>
+
       </>
     );
   }
