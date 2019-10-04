@@ -2,7 +2,6 @@
   import {
     Container,
     Row,
-    Col,
   } from 'react-bootstrap';
 import police from '../../img/police_circle.png'
 import thief from '../../img/thief_circle.png'
@@ -109,30 +108,30 @@ import { Link } from 'react-router-dom';
         <div className='all-icons'> 
           <Row>
             <div className='icon-txt'>
-               <img onClick={() => this.selectIdentify("police") } className={this.state.identify == "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />  
+               <img onClick={() => this.selectIdentify("police") } className={this.state.identify === "police" ? "btn-iden selected-btn-iden" : "btn-iden"} src={police} alt="Police" />  
                <h6 className='txt-indetify'>Policia</h6>
             </div>
             <div className='icon-txt'>
-               <img onClick={() => this.selectIdentify("accident") } className={this.state.identify == "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
+               <img onClick={() => this.selectIdentify("accident") } className={this.state.identify === "accident" ? "btn-iden selected-btn-iden" : "btn-iden"}src={accident} alt="Accident" />
                <h6 className='txt-indetify'>Accidente</h6>
             </div>
             <div className='icon-txt'>
-              <img onClick={() => this.selectIdentify("thief") } className={this.state.identify == "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
+              <img onClick={() => this.selectIdentify("thief") } className={this.state.identify === "thief" ? "btn-iden selected-btn-iden" : "btn-iden"} src={thief} alt="Thief" />
                <h6 className='txt-indetify'>Robo</h6>
             </div>
           </Row>
        
          <Row>
            <div className='icon-txt'>
-             <img onClick={() => this.selectIdentify("crane") } className={this.state.identify == "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
+             <img onClick={() => this.selectIdentify("crane") } className={this.state.identify === "crane" ? "btn-iden selected-btn-iden" : "btn-iden"} src={crane} alt="Crane" />
              <h6 className='txt-indetify'>Grúa</h6>   
            </div>
            <div className='icon-txt'>
-             <img onClick={() => this.selectIdentify("susp_passenger") } className={this.state.identify == "susp_passenger" ? "btn-iden selected-btn-iden" : "btn-iden"} src={susp_passenger} alt="Susp Pass" />
+             <img onClick={() => this.selectIdentify("susp_passenger") } className={this.state.identify === "susp_passenger" ? "btn-iden selected-btn-iden" : "btn-iden"} src={susp_passenger} alt="Susp Pass" />
              <p className='txt-indetify'>Pasajero Sospechoso</p> 
            </div>
             <div className='icon-txt'>
-             <img id='long-text' onClick={() => this.selectIdentify("need_help") } className={this.state.identify == "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
+             <img id='long-text' onClick={() => this.selectIdentify("need_help") } className={this.state.identify === "need_help" ? "btn-iden selected-btn-iden" : "btn-iden"} src={need_help} alt="Need Help" />
              <p className='txt-indetify'>Necesito Ayuda</p>
            </div>
          </Row>

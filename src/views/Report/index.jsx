@@ -101,7 +101,7 @@ class Report extends React.Component {
             </Row>
             <Row bsPrefix={" marginrow row"}>
               <Col  bsPrefix="date col" xs={6}>
-                {this.state.reportDate != undefined && 
+                {this.state.reportDate !== undefined && 
                 <p className="textRight ">{new Date(this.state.reportDate).toLocaleDateString()}<br />
                   {new Date(this.state.reportDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })+" hrs."}
                 </p>
@@ -124,7 +124,7 @@ class Report extends React.Component {
               </Col>
               <Col bsPrefix="comentarios-map col-12">
                 {console.log(this.state.reportComments)}
-                {this.state.reportComments.length != 0 ? this.state.reportComments.map(comment => {
+                {this.state.reportComments.length !== 0 ? this.state.reportComments.map(comment => {
                   return (
                     <div className="comment-div">
                       <Row bsPrefix="row-comment row">

@@ -4,7 +4,6 @@ import { db } from '../../data/firebase';
 import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
-import btnSeguridad from '../../img/btnSeguridad.png'
 import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
 import locIcon from '../../img/location_icon.png';
 import AlertDismissible from '../Alerts/index';
@@ -93,45 +92,31 @@ class Maps extends Component {
     })
   }
 
-  showPins() {
-    this.active = !this.active 
-    console.log(this.state.pins)
-    
-    if(this.active === true){
-      console.log(this.active)
-      db.collection("pins").onSnapshot((querySnapshot)=>{
-        this.setState({
-          pins: querySnapshot.docs.map(doc => {     
-            return {data: doc.data() }
-          })
+  makePin() {
+    db.collection("pins").onSnapshot((querySnapshot)=>{
+      this.setState({
+        pins: querySnapshot.docs.map(doc => {     
+          return {data: doc.data() }
         })
-        this.state.pins.map(e=>{ 
-              const icon = {
-                url: require(`../../img/${e.data.identify}.png`),
-                scaledSize: new google.maps.Size(60, 60), 
-              };
-              let marker = new google.maps.Marker({
-                position: { lat: e.data.location.lat, lng:  e.data.location.long },
-                map: this.map,
-                title: 'Laboratoria',
-                icon: icon,
-              });
-                marker.addListener('click', () => { 
-                 window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
-      
-                });
-                marker.setMap(this.map)
-      
-              });
+      })
+    this.state.pins.forEach(e=>{ 
+      const icon = {
+        url: require(`../../img/${e.data.identify}.png`),
+        scaledSize: new google.maps.Size(60, 60), 
+      };
+      let marker = new google.maps.Marker({
+        position: { lat: e.data.location.lat, lng:  e.data.location.long },
+        map: this.map,
+        title: 'Laboratoria',
+        icon: icon,
+      });
+        marker.addListener('click', () => { 
+          window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
+
+        });
+        // marker.setMap(this.map)
+      });
     })
-  }else {
-    // marker.setMap(null)
-  // this.setState({pins: []})
-  this.setState({pins: null})
-   
-  // console.log('pins',this.state.pins, 'data',this.state.data)
-  }
-  // console.log('click:',this.active)
 }
   
 
@@ -163,43 +148,6 @@ class Maps extends Component {
 
       this.marker.setMap(this.map)
       this.loaded_map = true;
-
-
-
-  //   var geocoder = new google.maps.Geocoder;
-  //   var infowindow = new google.maps.InfoWindow;
-
-    
-    
-
-  // function geocodeLatLng(geocoder, map, infowindow) {
-  //   var lat = position.coords.latitude
-  //   console.log('lat:',lat)
-  //   var coords = ( position.coords.longitude)
-  //   console.log('lng:',coords)
-  //   var contac = lat.contact('', coords)
-  //   console.log('contac:',contac)
-  //   var latlngStr = contac.split(',', 2); 
-  //   console.log('split:',latlngStr)   
-  //   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  //   geocoder.geocode({'location': latlng}, function(results, status) {
-  //     if (status === 'OK') {
-  //       if (results[0]) {
-  //         map.setZoom(11);
-  //         var marker = new google.maps.Marker({
-  //           position: latlng,
-  //           map: map
-  //         });
-  //         infowindow.setContent(results[0].formatted_address);
-  //         infowindow.open(map, marker);
-  //       }
-  //     }
-  //   })
-  // }
-
-  // geocodeLatLng(geocoder, this.map, infowindow);
-
-
   
     });
   
@@ -220,44 +168,9 @@ class Maps extends Component {
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(this.map);
     })
-    
-          
-    // db.collection("pins").onSnapshot((querySnapshot)=>{
-      
-    //   this.setState({
-    //     pins: querySnapshot.docs.map(doc => {     
-    //       return {data: doc.data() }
-    //     })
-    //   })
-    
-      
   
+    this.makePin()
 
-    //   this.state.pins.map(e=>{ 
-    //     const icon = {
-    //       url: require(`../../img/${e.data.identify}.png`),
-    //       scaledSize: new google.maps.Size(60, 60), 
-    //     };
-    //     let marker = new google.maps.Marker({
-    //       position: { lat: e.data.location.lat, lng:  e.data.location.long },
-    //       map: this.map,
-    //       title: 'Laboratoria',
-    //       icon: icon,
-    //     });
-    //       marker.addListener('click', () => { 
-    //        window.location = `/report/${e.data.author+"_"+e.data.identify+"_"+e.data.time}`
-
-    //       });
-    //       marker.setMap(this.map)
-
-    //     });
-
-    // })
-
-    //     });
-      
-    // })
-          
   }
         
   render() {
@@ -266,45 +179,34 @@ class Maps extends Component {
       <div className="alcien">
       {this.state.creatingPin ===false ? (
         <div className="alcien">
-        <Container fluid>
-          <div className="pruebaa">
-          {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
-            <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
-           
-          </div>
-          <Row bsPrefix="row icons-top">
+          <Container fluid>
+            <div className="pruebaa">
+            {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
+              <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={()=> this.changeIsMakingPin() }/>
+            
+            </div>
+            <Row bsPrefix="row icons-top">
               <img alt="Busqueda" className='icons'src={btnBusqueda} />
               <img alt="CLP" className="icons CLP" src={CLP} />
               <img alt="Conductor" className='icons'src={btnCondcutor} />
-          </Row>
-    
-          <Row  bsPrefix="row icons-bot">
-            
-              <img alt="Seguridad" id='security' onClick={() => this.showPins()} className='icons'src={!this.active ? btnSeguridad : btnSeguridadActivo}/> 
+            </Row>
+      
+            <Row  bsPrefix="row icons-bot">
+              <img alt="Seguridad"   className='icons hidden-test' src={ btnSeguridadActivo}/> 
               <img alt="Iniciar" id="start" className='icons'src={btnIniciar} />
               <img alt="Localizar" className='icons' src={locIcon} id='btn-localizacion' onClick={()=> this.reCenter() } />
-          </Row>
-          
-          <Row className="row alert-bot">
-            < AlertDismissible /> 
-          </Row>
-           
-         
-     
-             
-        
+            </Row>
             
-              
-            
-          
+            <Row className="row alert-bot">
+              < AlertDismissible /> 
+            </Row>
           </Container>
-      
-      <div id="divMap" ref={this.mapsRef} >
-      </div></div>
-        ) : <CreatePin lat={this.newPinLat} long={this.newPinLong} /> }
+        <div id="divMap" ref={this.mapsRef}></div>
+      </div>
+      ) : <CreatePin lat={this.newPinLat} long={this.newPinLong} /> }
     </div>
     )
-      }
+  }
 }
 
 
