@@ -82,7 +82,8 @@ import { Link } from 'react-router-dom';
       console.log(data)
       db.collection('pins').doc(nameDoc).set(data)
       .then(() => {
-        window.location = '/';
+        // window.location = '/showpins';
+        this.props.history.push('/showpins')
       })
 
     }

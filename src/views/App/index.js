@@ -18,6 +18,11 @@ const App = () => (
         />
         <Route
           exact
+          path="/showpins"
+          render={(props) => <Home {...props} pins="true" />}
+        />
+        <Route
+          exact
           path="/report/new/:lat/:long"
           render={(props) => <CreatePin {...props} />}
         />
