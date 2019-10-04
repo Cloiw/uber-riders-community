@@ -5,18 +5,21 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './report.css';
 import back from '../../img/arrowBack.png';
 import menu from '../../img/menu.png';
-import photoUser from '../../img/user_icon.png'
+import photoUser from '../../img/user_icon.png';
+
+
 
 class Report extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reportComments: [],userIcon:null
+      reportComments: [],userIcon:null, newComment: "", isLoading: false
     }
+  
   }
 
   componentDidMount() {
-    const id = this.props.match.params;;
+    const id = this.props.match.params;
 
     db.collection("pins").doc(id.reportsId).onSnapshot((querySnapshot) => {
       this.setState({
@@ -65,11 +68,34 @@ class Report extends React.Component {
     )
   }
 
+  changeComment(el){
+    this.setState({
+      newComment: el.target.value
+    })
+  }
+
+  addComment(){
+    this.setState({
+      isLoading: true
+    })
+    const id = this.props.match.params;
+    let oldComments = this.state.reportComments
+    let newCommentToAdd = {author:'user_lab',comment:this.state.newComment, name:'Laboratoria'}
+    oldComments.push(newCommentToAdd)
+    db.collection("pins").doc(id.reportsId).update({
+      comments: oldComments
+    }).then(res=>{
+      this.setState({
+        newComment: "",
+        isLoading: false
+      })
+    })
+  }
 
   render() {
     return (
       <>
-        <Container >
+        <Container fluid>
           <Row className={this.state.classIdentify+" title-report"}>
             <Link to="/">
               <img src={back} className="icon icon-arrow" alt="Volver atrás"></img>
@@ -141,6 +167,14 @@ class Report extends React.Component {
                 }) : <div><p>Aún no hay comentarios</p></div>
                 }
               </Col>
+              
+            </Row>
+            <Row bsPrefix="row-txt row">
+                <textarea className='txt-area-comm'rows={7}  value={this.state.newComment}  placeholder="Escribe aquí tu comentario"   onChange={(event) => this.changeComment(event)} />
+            </Row>
+            <Row bsPrefix="row-txt row">
+              {this.state.isLoading ? <p>Enviando . . .</p> :  
+                <button onClick={()=>this.addComment()} className="comment-btn">Comentar</button>}
             </Row>
       
           </Container>

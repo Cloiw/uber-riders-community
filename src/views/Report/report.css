@@ -11,6 +11,23 @@ p {
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
 }
+.txt-area-comm{
+  border: 1px black solid;
+  width: 95%;
+  align-self: center;
+}
+
+.comment-btn{
+  margin-top: 10px;
+  width: 95%;
+  background-color: black;
+  border: solid 1px black;
+  color: white;
+  height: 30px;
+}
+.row-txt{
+  justify-content: center;
+}
 .title-report {
   height:70px;
   justify-content: space-between;
@@ -144,7 +161,7 @@ p {
 }
 
 .comment-name{
-  border-bottom: 2px rgba(0, 0, 0, 0.336) solid;
+  border-bottom: 1px black solid;
 
 }
 .photoUserCom{
