@@ -8,7 +8,6 @@
 } */
 
 p {
-  margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
 }
 .txt-area-comm{
@@ -136,9 +135,6 @@ p {
   border-right: 0.5px white solid;
 }
 
-.marginrow{
-  margin:0;
-}
 .date{
   padding: 0 !important;
   background-color:rgba(0, 0, 0, 0.047)
@@ -161,6 +157,7 @@ p {
 }
 
 .comment-name{
+  margin-bottom: 6px;
   border-bottom: 1px black solid;
 
 }
