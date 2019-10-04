@@ -4,7 +4,8 @@ import { db } from '../../data/firebase';
 import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
-import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
+import btnSeguridad from '../../img/btnSeguridadActivo.png'
+import btnSeguridadActivo from '../../img/btnSeguridad.png'
 import locIcon from '../../img/location_icon.png';
 import AlertDismissible from '../Alerts/index';
 import CLP from '../../img/CLP.png'
@@ -207,7 +208,8 @@ class Maps extends Component {
             <Container fluid>
               <div className="pruebaa">
                 {this.state.showMakingText ? (<div className="text-create"><h2>Selecciona un lugar para colocar tu pin</h2></div>) : null}
-                <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={() => this.changeIsMakingPin()} />
+                {this.active ? (
+                  <img src={CreatePinIcon} alt="Boton crear" className={this.state.showMakingText ? "btn-create-pin border-active" : "btn-create-pin"} onClick={() => this.changeIsMakingPin()} />) : null }
 
               </div>
               <Row bsPrefix="row icons-top">
