@@ -6,11 +6,12 @@ import {
   Col,
 } from 'react-bootstrap';
 import './Home.css'
+import { tsPropertySignature } from '@babel/types';
 
-const Home = () => (
+const Home = (props) => (
   <Container fluid>
     <Row>
-      <Maps/>
+      <Maps pins={props.pins}/>
     </Row>
       
       <Col  bsPrefix="col btns-bottom ">
