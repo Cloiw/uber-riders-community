@@ -4,7 +4,6 @@ import { db } from '../../data/firebase';
 import btnBusqueda from '../../img/btnBusqueda.png'
 import btnIniciar from '../../img/btnIniciar.png'
 import btnCondcutor from '../../img/user_icon.png'
-import btnSeguridad from '../../img/btnSeguridad.png'
 import btnSeguridadActivo from '../../img/btnSeguridadActivo.png'
 import locIcon from '../../img/location_icon.png';
 import AlertDismissible from '../Alerts/index';
@@ -100,6 +99,7 @@ class Maps extends Component {
     this.showPins()
   }
 
+
   showPins() {
     console.log("showPins()", this.state.pins)
 
@@ -139,6 +139,7 @@ class Maps extends Component {
   }
 
 
+
   allOk() {
     console.log("all")
     navigator.geolocation.getCurrentPosition((position) => {
@@ -167,6 +168,7 @@ class Maps extends Component {
 
       this.marker.setMap(this.map)
       this.loaded_map = true;
+
     });
 
     navigator.geolocation.watchPosition((position) => {
@@ -185,18 +187,21 @@ class Maps extends Component {
       transitLayer.setMap(this.map);
     })
 
+
     console.log(this.props)
     if (this.props.pins) {
       this.active = true;
       this.showPins()
       console.log("THIS.ACTIVE", this.active)
     }
+
   }
 
   render() {
 
     return (
       <div className="alcien">
+
         {this.state.creatingPin === false ? (
           <div className="alcien">
             <Container fluid>
@@ -226,6 +231,7 @@ class Maps extends Component {
             </div></div>
         ) : <CreatePin lat={this.newPinLat} long={this.newPinLong} />}
       </div>
+
     )
   }
 }
