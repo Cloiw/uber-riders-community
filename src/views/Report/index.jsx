@@ -97,9 +97,9 @@ class Report extends React.Component {
       <>
         <Container fluid>
           <Row className={this.state.classIdentify+" title-report"}>
-            <Link to="/">
-              <img src={back} className="icon icon-arrow" alt="Volver atrás"></img>
-            </Link>
+            
+              <img onClick={()=>window.location = "/showpins"}src={back} className="icon icon-arrow" alt="Volver atrás"></img>
+          
             <h4 className="fontWhite ">{this.state.reportName}</h4>
             {/* <button className="icon" src="">Menú</button> */}
             <img src={menu} className="icon icon-dot" alt="Botón de menú"></img>
