@@ -73,6 +73,10 @@ div .text-create> h2 {
   margin-top: 35px;
 }
 
+.hidden-test{
+  visibility: hidden;
+}
+
 .icons{
   width: 50px;
   height: 50px;
